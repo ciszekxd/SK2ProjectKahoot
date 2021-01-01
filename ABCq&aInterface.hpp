@@ -1,8 +1,11 @@
 //
 // Created by ciszek on 30.12.2020.
 //
+#include "Question.hpp"
 
-#ifndef SK2PROJECTKAHOOT_ABCQ_AINTERFACE_HPP
-#define SK2PROJECTKAHOOT_ABCQ_AINTERFACE_HPP
 
-#endif //SK2PROJECTKAHOOT_ABCQ_AINTERFACE_HPP
+class QandAInterface{
+
+    virtual void loadQuestions()=0;
+    virtual Question getQuestion(int nr)=0;
+};

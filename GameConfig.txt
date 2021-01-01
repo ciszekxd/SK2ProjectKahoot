@@ -1,0 +1,16 @@
+C
+C "C" - oznacza komentarz
+C "Q" - oznacza pytanie
+C "A" - oznacza odpowiedź (powinno ich być zawsze 4 przed następnym pytaniem)
+C       zaraz po niej powinno pojawić się 0 lub 1 w zależności od tego czy odpowiedź jest prawdziwa czy nie
+C
+Q Jak miał na imię popież polak
+0 Jan
+0 Paweł
+0 Wojtyła
+1 Karol
+Q Gdzie kozy kują
+0 W Poznaniu
+0 W Warszawie
+1 W Pacanowie
+0 W Twojej piwnicy

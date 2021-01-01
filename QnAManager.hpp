@@ -1,8 +1,56 @@
 //
 // Created by ciszek on 31.12.2020.
 //
+#pragma once
+#include "ABCq&aInterface.hpp"
+#include <vector>
+#include <fstream>
+#include "Question.hpp"
+#include "Answer.hpp"
 
-#ifndef SK2PROJECTKAHOOT_QNAMANAGER_HPP
-#define SK2PROJECTKAHOOT_QNAMANAGER_HPP
+class QnAManager: public QandAInterface{
+private:
+    std::string path;
+    std::vector<Question> questions;
+    Question tempQue;
+public:
+    QnAManager(std::string path){
+        this->path=path;
+    }
 
-#endif //SK2PROJECTKAHOOT_QNAMANAGER_HPP
+
+    void loadQuestions() override{
+
+        string tempStr;
+        bool TorF;
+
+        ifstream inFile(this->path);
+        if (!inFile) {
+            cout << "Unable to open file";
+            exit(1); // terminate with error
+        }
+
+        while (inFile.peek() != EOF) {
+            inFile >> tempStr;
+            if (!tempStr.compare("Q")){
+                std::getline(inFile,tempStr);
+                tempQue.setQuestion(tempStr);
+                for(int i=0; i<4; i++){
+                    inFile >> TorF;
+                    std::getline(inFile, tempStr);
+                    tempQue.setAnswer(tempStr,TorF);
+                }
+            }else{
+                std::getline(inFile,tempStr);
+            }
+        }
+
+        inFile.close();
+
+    }
+
+    Question getQuestion(int nr) override{
+        return questions[nr+1];
+    }
+
+};

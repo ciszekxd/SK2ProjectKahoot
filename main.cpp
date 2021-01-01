@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Kahoot.cpp"
+#include "Kahoot.hpp"
 
 
 
 int main(){
-    Kahoot program();
+    Kahoot program;
     return 0;
 }

@@ -34,6 +34,8 @@ add_executable(Project1
     main.cpp
     server.h
     server.cpp
+    client.h
+    client.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui

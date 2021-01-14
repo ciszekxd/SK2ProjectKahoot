@@ -23,8 +23,9 @@ void MainWindow::printer()
 
 //change screen
 void MainWindow::P1B2onClick(){
-    ui->stackedWidget->setCurrentIndex(1);
-    connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::P2B1onClick);
+    ui->stackedWidget->setCurrentIndex(3);
+    //connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::P2B1onClick);
+    this->clientObj = new Client("127.0.0.1","12332");
 }
 
 void MainWindow::P2B1onClick(){
@@ -40,13 +41,13 @@ void MainWindow::P2B1onClick(){
     std::cout << this->pathToConfig << std::endl;
     this->QAM = new QnAManager(this->pathToConfig);
 
-    if(QAM->isPathValid()){
+   // if(QAM->isPathValid()){
         QAM->loadQuestions();
-        this->serverObj = new server;
+        this->serverObj = new Server;
         ui->stackedWidget->setCurrentIndex(2);
-    }else{
-        ui->label_3->setVisible(true);
-    }
+   // }else{
+    //    ui->label_3->setVisible(true);
+   // }
 }
 
 

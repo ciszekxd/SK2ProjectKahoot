@@ -7,6 +7,8 @@
 #include <fstream>
 #include "Question.hpp"
 #include "Answer.hpp"
+#include <iostream>
+#include <string>
 
 class QnAManager: public QandAInterface{
 private:
@@ -21,8 +23,10 @@ public:
     bool isPathValid(){
         ifstream inFile(this->path);
         if(!inFile){
+            inFile.close();
             return 0;
         }else{
+            inFile.close();
             return 1;
         }
     }

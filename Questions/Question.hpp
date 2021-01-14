@@ -22,7 +22,8 @@ public:
     void setAnswer(string text, bool val){
         QAnswers[AnsIte].setContent(text);
         QAnswers[AnsIte].setIsGood(val);
-        if(AnsIte < 4) AnsIte++;
+        if(AnsIte < 3) AnsIte++;
+        else AnsIte = 0;
     }
 
     void setQuestion(string content){

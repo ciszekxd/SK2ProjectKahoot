@@ -3,15 +3,23 @@
 
 #include <QObject>
 #include <QTcpServer>
+#include <QTcpSocket>
+#include <QAbstractSocket>
+#include <iostream>
 
-
-class server : public QObject
+class Server : public QObject
 {
     Q_OBJECT
 public:
+   Server();
+   void onNewConnection();
+   void sendQuestionAndAnswers();
+   void onDisconnect();
 
 private:
-   QTcpServer *server = new QTcpServer();
+   QTcpServer *serverObj = new QTcpServer();
+   QList<QTcpSocket*> cliList;
+
 
 
 };

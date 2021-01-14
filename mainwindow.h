@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "server.h"
+#include "client.h"
 #include "./Questions/QnAManager.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -26,8 +27,9 @@ public:
 private:
     Ui::MainWindow *ui;
     std::string pathToConfig;
-    server *serverObj;
+    Server *serverObj;
     QnAManager *QAM;
+    Client *clientObj;
 
 
 };

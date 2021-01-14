@@ -25,7 +25,7 @@ void MainWindow::printer()
 void MainWindow::P1B2onClick(){
     ui->stackedWidget->setCurrentIndex(3);
     //connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::P2B1onClick);
-    this->clientObj = new Client("127.0.0.1","12332");
+    this->clientObj = new Client("12137","127.0.0.1");
 }
 
 void MainWindow::P2B1onClick(){

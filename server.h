@@ -10,11 +10,16 @@
 class Server : public QObject
 {
     Q_OBJECT
+
+
+
 public:
-   Server();
-   void onNewConnection();
-   void sendQuestionAndAnswers();
-   void onDisconnect();
+    Server();
+
+private slots:
+    void onNewConnection();
+    //void sendQuestionAndAnswers();
+    //void onDisconnect();
 
 private:
    QTcpServer *serverObj = new QTcpServer();

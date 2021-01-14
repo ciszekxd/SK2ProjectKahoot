@@ -2,8 +2,10 @@
 
 
 Server::Server(){
-    serverObj->listen(QHostAddress::LocalHost,12332);
-    connect(serverObj, SIGNAL(onNewConnection()), this, SLOT(onNewConnection));
+    if(!serverObj->listen(QHostAddress::LocalHost,12137)){
+        std::cout << "server unable to listen" << std::endl;
+    }
+    connect(serverObj, SIGNAL(newConnection()), this, SLOT(onNewConnection()));
 }
 
 void Server::onNewConnection(){

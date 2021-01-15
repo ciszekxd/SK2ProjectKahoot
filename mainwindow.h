@@ -23,6 +23,8 @@ public:
     void P1B1onClick();
     void P1B2onClick();
     void P2B1onClick();
+public slots:
+    void updateServerUsers();
 
 private:
     Ui::MainWindow *ui;

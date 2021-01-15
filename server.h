@@ -16,15 +16,23 @@ class Server : public QObject
 public:
     Server();
 
+signals:
+    void usersNumberChanged();
+
 private slots:
     void onNewConnection();
+    void signalTest();
     //void sendQuestionAndAnswers();
     //void onDisconnect();
+public:
+    int getUsersNumber();
 
 private:
-   QTcpServer *serverObj = new QTcpServer();
-   QList<QTcpSocket*> cliList;
+    QTcpServer *serverObj = new QTcpServer();
+    QList<QTcpSocket*> cliList;
 
+public:
+    int connectedUsers;
 
 
 };

@@ -7,8 +7,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     ui->label_3->setVisible(false);
+
+    this->serverObj = new Server;
+
+
     connect(ui->ServerButton, &QPushButton::clicked, this, &MainWindow::P1B1onClick);
     connect(ui->ClientButton, &QPushButton::clicked, this, &MainWindow::P1B2onClick);
+    connect(this->serverObj, SIGNAL(usersNumberChanged()),this, SLOT(updateServerUsers()));
 }
 
 MainWindow::~MainWindow()
@@ -41,13 +46,12 @@ void MainWindow::P2B1onClick(){
     std::cout << this->pathToConfig << std::endl;
     this->QAM = new QnAManager(this->pathToConfig);
 
-   // if(QAM->isPathValid()){
-        QAM->loadQuestions();
-        this->serverObj = new Server;
+    if(QAM->isPathValid()){
+        QAM->loadQuestions(); 
         ui->stackedWidget->setCurrentIndex(2);
-   // }else{
-    //    ui->label_3->setVisible(true);
-   // }
+    }else{
+        ui->label_3->setVisible(true);
+    }
 }
 
 
@@ -59,10 +63,8 @@ void MainWindow::P1B1onClick(){
 
 
 
-
-
-/*void MainWindow::changeUi()
-{
-    delete ui;
-    uiT2->setupUi(this);
-}*/
+void MainWindow::updateServerUsers(){
+    std::cout << "updated" << std::endl;
+    QString uNum = QString::number(serverObj->getUsersNumber());
+    ui->numOfusers->setText(uNum);
+}

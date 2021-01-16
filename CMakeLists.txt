@@ -39,6 +39,8 @@ add_executable(Project1
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    clientconnectionmanager.cpp
+    clientconnectionmanager.h
     )
 
 

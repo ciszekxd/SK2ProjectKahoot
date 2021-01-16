@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -146,6 +146,19 @@ textsize: 30
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Connected users&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testServer">
+      <property name="geometry">
+       <rect>
+        <x>822</x>
+        <y>367</y>
+        <width>371</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>send message to clients</string>
       </property>
      </widget>
     </widget>

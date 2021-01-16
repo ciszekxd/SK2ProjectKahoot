@@ -6,6 +6,7 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 #include <iostream>
+#include "client.h"
 
 class Server : public QObject
 {
@@ -22,18 +23,18 @@ signals:
 private slots:
     void onNewConnection();
     void signalTest();
-    
-  //  void writeToClient();
     void readFromClient();
     //void sendQuestionAndAnswers();
     //void onDisconnect();
+
 public:
     int getUsersNumber();
     void runServer();
+    void writeToClients();
 
 private:
     QTcpServer *serverObj = new QTcpServer();
-    QList<QTcpSocket*> cliList;
+    QList<Client*> PlayerList;
 
 public:
     int connectedUsers;

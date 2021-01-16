@@ -6,6 +6,7 @@
 #include <string>
 #include "server.h"
 #include "client.h"
+#include "clientconnectionmanager.h"
 #include "./Questions/QnAManager.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -23,7 +24,9 @@ public:
     void P1B1onClick();
     void P1B2onClick();
     void P2B1onClick();
+    void P3B1onClick();
     void P4B1onClick();
+
 public slots:
     void updateServerUsers();
 
@@ -32,7 +35,7 @@ private:
     std::string pathToConfig;
     Server *serverObj;
     QnAManager *QAM;
-    Client *clientObj;
+    ClientConnectionManager *CCMObj;
 
 
 };

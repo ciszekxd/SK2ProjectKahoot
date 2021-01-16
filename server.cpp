@@ -2,6 +2,7 @@
 #include <QObject>
 #include <QString>
 #include <QTcpSocket>
+#include "player.h"
 
 Server::Server(){
 
@@ -17,10 +18,13 @@ void Server::runServer(){
 
 
 void Server::onNewConnection(){
-    QTcpSocket *TempCli = serverObj->nextPendingConnection();
-    this->cliList.push_back(TempCli);
 
-    connect(this->cliList.last(), SIGNAL(readyRead()), this, SLOT(readFromClient()));
+    Client* tempPlayer = new Client();
+
+    tempPlayer->setSocket(serverObj->nextPendingConnection());
+    this->PlayerList.push_back(tempPlayer);
+
+    connect(this->PlayerList.last()->getSocket(), SIGNAL(readyRead()), this, SLOT(readFromClient()));
     std::cout << "new connection" << std::endl;
 
     connectedUsers++;
@@ -43,4 +47,11 @@ void Server::readFromClient(){
      std::string mytext = buffer.toStdString();
      std::cout << mytext << std::endl;
 
+}
+
+void Server::writeToClients(){
+    for(int i=0; i<PlayerList.size(); i++){
+        PlayerList[i]->getSocket()->write("hello server here");
+    }
+    std::cout << "server wrote to clients" << std::endl;
 }

@@ -22,10 +22,14 @@ signals:
 private slots:
     void onNewConnection();
     void signalTest();
+    
+  //  void writeToClient();
+    void readFromClient();
     //void sendQuestionAndAnswers();
     //void onDisconnect();
 public:
     int getUsersNumber();
+    void runServer();
 
 private:
     QTcpServer *serverObj = new QTcpServer();

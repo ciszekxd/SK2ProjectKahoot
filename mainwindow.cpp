@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     connect(ui->ServerButton, &QPushButton::clicked, this, &MainWindow::P1B1onClick);
     connect(ui->ClientButton, &QPushButton::clicked, this, &MainWindow::P1B2onClick);
     connect(this->serverObj, SIGNAL(usersNumberChanged()),this, SLOT(updateServerUsers()));
+    connect(ui->testClient, &QPushButton::clicked, this, &MainWindow::P4B1onClick);
 }
 
 MainWindow::~MainWindow()
@@ -48,6 +49,7 @@ void MainWindow::P2B1onClick(){
 
     if(QAM->isPathValid()){
         QAM->loadQuestions(); 
+        serverObj->runServer();
         ui->stackedWidget->setCurrentIndex(2);
     }else{
         ui->label_3->setVisible(true);
@@ -61,6 +63,10 @@ void MainWindow::P1B1onClick(){
     connect(ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::P2B1onClick);
 }
 
+void MainWindow::P4B1onClick(){
+    this->clientObj->writeToServer();
+
+}
 
 
 void MainWindow::updateServerUsers(){
@@ -68,3 +74,6 @@ void MainWindow::updateServerUsers(){
     QString uNum = QString::number(serverObj->getUsersNumber());
     ui->numOfusers->setText(uNum);
 }
+
+
+

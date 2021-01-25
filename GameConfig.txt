@@ -1,0 +1,16 @@
+C
+C "C" - oznacza komentarz
+C "Q" - oznacza pytanie
+C po linijce zaczynajacej sie od Q następne 4 linijki powinny reprezentowac odpowiedzi i zaczynac sie od 0 dla falszywej i 1 dla prawdziwej
+C       
+C
+Q Jak miał na imię popież polak
+0 Jan
+0 Paweł
+0 Wojtyła
+1 Karol
+Q Gdzie kozy kują
+0 W Poznaniu
+0 W Warszawie
+1 W Pacanowie
+0 W Twojej piwnicy

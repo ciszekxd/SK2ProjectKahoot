@@ -7,22 +7,25 @@
 #include <QString>
 
 
-class Client
+class Client : public QObject
 {
+    Q_OBJECT
 public:
+
     Client(QString, QString, QString);
-   // void writeToServer();
-  //  void readFromServer();
-
-
-
     Client();
+
+//getters and setters
     std::string getName();
     void setName(std::string);
     int getScore();
     void setScore(int);
     QTcpSocket*  getSocket();
     void setSocket(QTcpSocket*);
+
+
+public slots:
+//    void quitFromServerGracefully();
 
 private:
     int score;

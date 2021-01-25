@@ -19,3 +19,10 @@ void ClientConnectionManager::readFromServer(){
     std::string mytext = buffer.toStdString();
     std::cout << mytext << std::endl;
 }
+
+void ClientConnectionManager::endConnection(){
+    std::cout << "client delates socket" << std::endl;
+    this->clientObj->getSocket()->disconnect();
+    this->clientObj->getSocket()->disconnectFromHost();
+    this->clientObj->getSocket()->deleteLater();
+}

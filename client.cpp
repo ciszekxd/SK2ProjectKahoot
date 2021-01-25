@@ -1,6 +1,6 @@
 #include "client.h"
 #include <iostream>
-
+#include <QObject>
 
 // version with auto connection
 Client::Client(QString port, QString ip, QString name)
@@ -12,7 +12,14 @@ Client::Client(QString port, QString ip, QString name)
     this->name = convStr;
     this->score = 0;
 
+
 }
+/*
+void Client::quitFromServerGracefully(){
+    std::cout << "<asiodaoinfisdnfisnfsifunsfisfsdudnfsu"<< std::endl;
+    //emit userQuits();
+}
+*/
 
 // version without auto connection
 Client::Client()
@@ -20,20 +27,7 @@ Client::Client()
     this->score = 0;
     this->socketObj = new QTcpSocket();
 }
-/*
-void Client::writeToServer(){
-    this->socketObj->write("hello amigo client here");
-    std::cout << "write to server" << std::endl;
-}
 
-void Client::readFromServer(){
-    QByteArray buffer;
-    buffer = this->getSocket()->readAll();
-
-    std::string mytext = buffer.toStdString();
-    std::cout << mytext << std::endl;
-}
-*/
 
 std::string Client::getName(){
     return this->name;

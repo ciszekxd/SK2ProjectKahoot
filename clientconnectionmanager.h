@@ -4,15 +4,20 @@
 #include <QObject>
 #include "client.h"
 
-class ClientConnectionManager: QObject
+class ClientConnectionManager: public QObject
 {
     Q_OBJECT
+
 public:
+
     ClientConnectionManager(Client*);
 
     void writeToServer();
+
 public slots:
+
     void readFromServer();
+    void endConnection();
 
 private:
     Client* clientObj;

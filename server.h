@@ -12,20 +12,22 @@ class Server : public QObject
 {
     Q_OBJECT
 
-
-
 public:
+
     Server();
 
 signals:
+
     void usersNumberChanged();
 
 private slots:
+
+    void onDisconnect();
     void onNewConnection();
     void signalTest();
     void readFromClient();
     //void sendQuestionAndAnswers();
-    //void onDisconnect();
+
 
 public:
     int getUsersNumber();
@@ -33,12 +35,12 @@ public:
     void writeToClients();
 
 private:
-    QTcpServer *serverObj = new QTcpServer();
+    QTcpServer *serverObj;
     QList<Client*> PlayerList;
 
 public:
-    int connectedUsers;
 
+    int connectedUsers;
 
 };
 

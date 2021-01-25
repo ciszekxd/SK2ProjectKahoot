@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void printer();
@@ -28,15 +29,22 @@ public:
     void P4B1onClick();
 
 public slots:
+
     void updateServerUsers();
 
+signals:
+
+    void endAll();
 private:
+
     Ui::MainWindow *ui;
     std::string pathToConfig;
     Server *serverObj;
     QnAManager *QAM;
-    ClientConnectionManager *CCMObj;
 
+public:
+
+    ClientConnectionManager *CCMObj;
 
 };
 #endif // MAINWINDOW_H

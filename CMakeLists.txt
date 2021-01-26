@@ -41,6 +41,10 @@ add_executable(Project1
     mainwindow.ui
     clientconnectionmanager.cpp
     clientconnectionmanager.h
+    gameserver.cpp
+    gameserver.h
+    gameclient.cpp
+    gameclient.h
     )
 
 

@@ -13,11 +13,15 @@ public:
     ClientConnectionManager(Client*);
 
     void writeToServer();
+    bool isConnected();
 
 public slots:
-
-    void readFromServer();
+    void emitReadingStarts();
+    std::string readFromServer();
     void endConnection();
+
+signals:
+    void readingStarts();
 
 private:
     Client* clientObj;

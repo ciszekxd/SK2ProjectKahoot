@@ -62,7 +62,10 @@ public:
     }
 
     Question getQuestion(int nr) override{
-        return questions[nr+1];
+        return questions[nr];
     }
 
+    int AmountOfQuestions(){
+        return questions.size();
+    }
 };

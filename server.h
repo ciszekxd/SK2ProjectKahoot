@@ -32,7 +32,7 @@ private slots:
 public:
     int getUsersNumber();
     void runServer();
-    void writeToClients();
+    void writeToClients(std::string);
 
 private:
     QTcpServer *serverObj;

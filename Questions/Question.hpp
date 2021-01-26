@@ -19,6 +19,12 @@ public:
         return content;
     }
 
+    void setAnswer(string text){
+        QAnswers[AnsIte].setContent(text);
+        if(AnsIte < 3) AnsIte++;
+        else AnsIte = 0;
+    }
+
     void setAnswer(string text, bool val){
         QAnswers[AnsIte].setContent(text);
         QAnswers[AnsIte].setIsGood(val);
@@ -30,5 +36,9 @@ public:
         this->content = content;
     }
 
+    Answer* getAnswer(){
+        Answer * ans = &QAnswers[0];
+        return ans;
+    }
 
 };

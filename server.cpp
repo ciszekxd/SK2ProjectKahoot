@@ -65,9 +65,11 @@ void Server::readFromClient(){
 
 }
 
-void Server::writeToClients(){
+void Server::writeToClients(std::string text){
+
+    QByteArray byteArray(text.c_str(),text.length());
     for(int i=0; i<PlayerList.size(); i++){
-        PlayerList[i]->getSocket()->write("hello server here");
+        PlayerList[i]->getSocket()->write(byteArray);
     }
     std::cout << "server wrote to clients" << std::endl;
 }

@@ -8,6 +8,8 @@
 #include "client.h"
 #include "clientconnectionmanager.h"
 #include "./Questions/QnAManager.hpp"
+#include "gameclient.h"
+#include "gameserver.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,10 +29,14 @@ public:
     void P2B1onClick();
     void P3B1onClick();
     void P4B1onClick();
+    void SetUpGamerPage();
+    void checkAgain();
+
 
 public slots:
 
     void updateServerUsers();
+    void DisplayGamerPage();
 
 signals:
 
@@ -43,8 +49,9 @@ private:
     QnAManager *QAM;
 
 public:
-
-    ClientConnectionManager *CCMObj;
+    GameServer* GM;
+    GameClient* GClient;
+    ClientConnectionManager* CCMObj;
 
 };
 #endif // MAINWINDOW_H

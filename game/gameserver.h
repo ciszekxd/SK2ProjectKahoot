@@ -2,7 +2,7 @@
 #define GAMESERVER_H
 
 #include <QObject>
-#include "server.h"
+#include "../server/server.h"
 #include "Questions/QnAManager.hpp"
 
 class GameServer : public QObject

@@ -6,7 +6,7 @@
 #include <QTcpSocket>
 #include <QAbstractSocket>
 #include <iostream>
-#include "client.h"
+#include "../client/client.h"
 
 class Server : public QObject
 {

@@ -10,10 +10,12 @@ class ClientConnectionManager: public QObject
 
 public:
 
-    ClientConnectionManager(Client*);
+    //ClientConnectionManager(Client*);
+    ClientConnectionManager();
 
     void writeToServer();
     bool isConnected();
+    void setClient(Client*);
 
 public slots:
     void emitReadingStarts();

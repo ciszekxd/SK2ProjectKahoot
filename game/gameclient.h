@@ -1,6 +1,6 @@
 #ifndef GAMECLIENT_H
 #define GAMECLIENT_H
-#include "clientconnectionmanager.h"
+#include "../client/clientconnectionmanager.h"
 #include <QObject>
 #include "Questions/Question.hpp"
 

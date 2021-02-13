@@ -1,0 +1,33 @@
+#ifndef PAGE_H
+#define PAGE_H
+
+#include <QObject>
+#include <QMainWindow>
+#include <iostream>
+#include "client/clientconnectionmanager.h"
+#include "../ui_mainwindow.h"
+#include "../questions/QnAManager.hpp"
+#include "../server/server.h"
+
+class Page : public QObject
+{
+    Q_OBJECT
+public:
+
+    virtual void setUpPage(Ui::MainWindow*)=0;
+    int getPageIndex();
+    std::string getNextPage();
+
+
+
+signals:
+    void readyForChange();
+    void newServerMade();
+
+protected:
+    int pageIndex;
+    std::string nextPage;
+    Ui::MainWindow* tempUi;
+};
+
+#endif // PAGE_H

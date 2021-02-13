@@ -1,13 +1,19 @@
 #include "clientconnectionmanager.h"
 #include <iostream>
 
-ClientConnectionManager::ClientConnectionManager(Client* newClient){
+/*ClientConnectionManager::ClientConnectionManager(Client* newClient){
     this->clientObj = newClient;
-    //connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(readFromServer()));
     connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
+}*/
+ClientConnectionManager::ClientConnectionManager(){
+    std::cout << "empty client manager initiated" << std::endl;
 
 }
 
+void ClientConnectionManager::setClient(Client* Cli){
+    this->clientObj = Cli;
+    connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
+}
 void ClientConnectionManager::writeToServer(){
     clientObj->getSocket()->write("hello amigo client here");
     std::cout << "write to server" << std::endl;

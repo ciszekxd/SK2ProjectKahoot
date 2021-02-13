@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Project1 LANGUAGES CXX)
+project(SK2ProjectKahoot LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -30,22 +30,37 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 
 
-add_executable(Project1
+add_executable(
+    SK2ProjectKahoot
     main.cpp
-    server.h
-    server.cpp
-    client.h
-    client.cpp
-    mainwindow.cpp
-    mainwindow.h
+    ./server/server.h
+    ./server/server.cpp
+    ./client/client.h
+    ./client/client.cpp
+    #mainwindow.cpp
+    #mainwindow.h
+    mainwindowv2.cpp
+    mainwindowv2.h
     mainwindow.ui
-    clientconnectionmanager.cpp
-    clientconnectionmanager.h
-    gameserver.cpp
-    gameserver.h
-    gameclient.cpp
-    gameclient.h
+    ./client/clientconnectionmanager.cpp
+    ./client/clientconnectionmanager.h
+    ./game/gameserver.cpp
+    ./game/gameserver.h
+    ./game/gameclient.cpp
+    ./game/gameclient.h
+    ./page/selectionpage.h
+    ./page/selectionpage.cpp
+    ./page/setpathpage.cpp
+    ./page/setpathpage.h
+    ./page/page.cpp
+    ./page/page.h
+    ./page/clientconnectionpage.cpp
+    ./page/clientconnectionpage.h
+    ./page/gmpage.cpp
+    ./page/gmpage.h
+    ./page/gamepage.cpp
+    ./page/gamepage.h
     )
 
 
-target_link_libraries(Project1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt5::Network)
+target_link_libraries(SK2ProjectKahoot PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt5::Network)

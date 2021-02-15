@@ -14,7 +14,6 @@ public:
     void setQAMObj();
 private:
     GameServer* gameServerObj;
-    QnAManager* QAMObj;
 
 };
 

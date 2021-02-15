@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     this->gamePageObj = new GamePage;
 
     this->currentPage = this->selectionPageObj;
+    this->QAMObj = NULL;
+    this->serverObj = NULL;
+    this->gameServerObj = NULL;
+
 
     //ClientConnectionPage------------------------
     connect(this, SIGNAL(endAll()), clientConnectionObj->getCCMObj(), SLOT(endConnection()));
@@ -94,14 +98,14 @@ MainWindow::~MainWindow()
     std::cout << "finishing starts5" << std::endl;
     delete this->clientConnectionObj;
     std::cout << "finishing starts6" << std::endl;
-    delete this->serverObj;
+    if(serverObj != NULL) delete this->serverObj;
     std::cout << "finishing starts7" << std::endl;
-    delete this->QAMObj;
+    if(QAMObj != NULL) delete this->QAMObj;
     std::cout << "finishing starts8" << std::endl;
-    delete this->gameServerObj;
+    if(gameServerObj != NULL) delete this->gameServerObj;
     std::cout << "finishing starts9" << std::endl;
 
-
-    std::cout << "finished" << std::endl;
     delete ui;
+    std::cout << "finished" << std::endl;
+
 }

@@ -3,12 +3,12 @@
 setPathPage::setPathPage()
 {
     this->pageIndex = 1;
+    this->QAM = NULL;
+    this->serverObj = NULL;
 }
 
 setPathPage::~setPathPage(){
-    delete tempUi;
-    delete QAM;
-    delete serverObj;
+    std::cout << "dec active spp" << std::endl;
 
 }
 

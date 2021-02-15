@@ -3,11 +3,11 @@
 GMPage::GMPage()
 {
     this->pageIndex = 2;
+
 }
 
 GMPage::~GMPage(){
     delete gameServerObj;
-    delete QAMObj;
 }
 
 void GMPage::setUpPage(Ui::MainWindow* ui){

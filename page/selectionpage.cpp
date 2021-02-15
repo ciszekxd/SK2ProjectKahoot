@@ -8,7 +8,7 @@ selectionPage::selectionPage()
     //connect(ui->ClientButton, &QPushButton::clicked, this, &MainWindow::selectClientMode);
 }
 selectionPage::~selectionPage(){
-    delete tempUi;
+    std::cout << "dec active sp" << std::endl;
 }
 /*
 int selectionPage::getPageIndex(){

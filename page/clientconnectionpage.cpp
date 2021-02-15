@@ -8,7 +8,6 @@ clientConnectionPage::clientConnectionPage()
 }
 
 clientConnectionPage::~clientConnectionPage(){
-    delete tempUi;
     delete CCMObj;
 }
 

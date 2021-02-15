@@ -6,11 +6,12 @@
     connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
 }*/
 ClientConnectionManager::ClientConnectionManager(){
+    clientObj = NULL;
     std::cout << "empty client manager initiated" << std::endl;
 
 }
 ClientConnectionManager::~ClientConnectionManager(){
-    delete clientObj;
+    if(clientObj != NULL) delete clientObj;
 }
 
 void ClientConnectionManager::setClient(Client* Cli){

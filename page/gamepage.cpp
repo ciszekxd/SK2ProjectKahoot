@@ -6,7 +6,7 @@ GamePage::GamePage()
 }
 
 GamePage::~GamePage(){
-
+    std::cout << "dec active gp" << std::endl;
 }
 
 void GamePage::setUpPage(Ui::MainWindow *){

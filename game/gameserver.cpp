@@ -7,8 +7,7 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
 }
 
 GameServer::~GameServer(){
-    delete serverObj;
-    delete QnAMObj;
+    std::cout << "dec active s" << std::endl;
 }
 
 void GameServer::sendQuestion(int Qnumber){

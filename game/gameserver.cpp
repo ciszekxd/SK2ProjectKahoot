@@ -6,6 +6,11 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
     this->QnAMObj = QAM;
 }
 
+GameServer::~GameServer(){
+    delete serverObj;
+    delete QnAMObj;
+}
+
 void GameServer::sendQuestion(int Qnumber){
     serverObj->writeToClients("Q");
 
@@ -19,4 +24,8 @@ void GameServer::sendQuestion(int Qnumber){
     }
 
 
+}
+//dorobić write to clients
+void GameServer::writeToClients(std::string str){
+    serverObj->writeToClients(str);
 }

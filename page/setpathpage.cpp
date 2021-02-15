@@ -4,6 +4,14 @@ setPathPage::setPathPage()
 {
     this->pageIndex = 1;
 }
+
+setPathPage::~setPathPage(){
+    delete tempUi;
+    delete QAM;
+    delete serverObj;
+
+}
+
 /*
 int setPathPage::getPageIndex(){
     return this->pageIndex;
@@ -31,13 +39,15 @@ void setPathPage::submitPath(){
 
         if(QAM->isPathValid()){
             QAM->loadQuestions();
+
+            //give QAM to mainwindow
+            emit newQAMMade();
+
             //create and run server
             this->serverObj = new Server;
 
             emit newServerMade();
 
-            connect(this->serverObj, SIGNAL(usersNumberChanged()),this, SLOT(updateServerUsers()));
-            //connect(this, SIGNAL(endAll()), this->serverObj, SLOTS(onDisconnect));
             serverObj->runServer();
             goToGMPage();
 
@@ -53,4 +63,8 @@ void setPathPage::goToGMPage(){
 
 Server* setPathPage::getServerObj(){
     return this->serverObj;
+}
+
+QnAManager* setPathPage::getQAMObj(){
+    return this->QAM;
 }

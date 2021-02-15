@@ -14,6 +14,9 @@ Client::Client(QString port, QString ip, QString name)
 
 
 }
+Client::~Client(){
+    socketObj->deleteLater();
+}
 /*
 void Client::quitFromServerGracefully(){
     std::cout << "<asiodaoinfisdnfisnfsifunsfisfsdudnfsu"<< std::endl;

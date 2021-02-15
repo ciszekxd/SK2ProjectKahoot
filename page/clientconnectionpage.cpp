@@ -7,6 +7,11 @@ clientConnectionPage::clientConnectionPage()
     this->CCMObj = new ClientConnectionManager;
 }
 
+clientConnectionPage::~clientConnectionPage(){
+    delete tempUi;
+    delete CCMObj;
+}
+
 void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
 
     this->tempUi = ui;

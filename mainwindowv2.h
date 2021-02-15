@@ -30,14 +30,19 @@ public:
 
     void setUpPage();
     void runPage();
+    //setters
+
+    void setQAMObj();
 
 
 signals:
     void endAll();
 public slots:
     void changePage();
-    void setServerObj();
     void updatePageObjects();
+    void setUpGM();
+    void setServerObj();
+
 
 private:
     Ui::MainWindow *ui;
@@ -48,6 +53,9 @@ private:
     GMPage* GMObj;
     Server* serverObj;
     GamePage* gamePageObj;
+    QnAManager* QAMObj;
+    GameServer* gameServerObj;
+
 
 
 };

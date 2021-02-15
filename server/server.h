@@ -15,6 +15,7 @@ class Server : public QObject
 public:
 
     Server();
+    ~Server();
 
 signals:
 

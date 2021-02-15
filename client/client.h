@@ -14,6 +14,7 @@ public:
 
     Client(QString, QString, QString);
     Client();
+    ~Client();
 
 //getters and setters
     std::string getName();

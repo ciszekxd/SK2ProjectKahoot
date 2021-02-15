@@ -12,6 +12,13 @@ Server::Server(){
     connectedUsers = 0;
 }
 
+Server::~Server(){
+    serverObj->deleteLater();
+
+    qDeleteAll(PlayerList.begin(), PlayerList.end());
+
+}
+
 void Server::runServer(){
     if(!serverObj->listen(QHostAddress::LocalHost,12137)){
         std::cout << "server unable to listen" << std::endl;

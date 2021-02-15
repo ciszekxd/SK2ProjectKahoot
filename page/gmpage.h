@@ -7,11 +7,14 @@ class GMPage : public Page
 {
 public:
     GMPage();
+    ~GMPage();
     void setUpPage(Ui::MainWindow*);
     void startGame();
-    void setServerObj(Server*);
+    void setGameServerObj(GameServer*);
+    void setQAMObj();
 private:
-    Server* serverObj;
+    GameServer* gameServerObj;
+    QnAManager* QAMObj;
 
 };
 

@@ -12,6 +12,7 @@ public:
 
     //ClientConnectionManager(Client*);
     ClientConnectionManager();
+    ~ClientConnectionManager();
 
     void writeToServer();
     bool isConnected();

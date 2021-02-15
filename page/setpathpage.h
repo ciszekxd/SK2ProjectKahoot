@@ -6,9 +6,11 @@ class setPathPage : public Page
 {
 public:
     explicit setPathPage();
+    ~setPathPage();
     void setUpPage(Ui::MainWindow*);
     void goToGMPage();
     Server* getServerObj();
+    QnAManager* getQAMObj();
 
 
     void submitPath();

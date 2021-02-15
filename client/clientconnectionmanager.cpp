@@ -9,6 +9,9 @@ ClientConnectionManager::ClientConnectionManager(){
     std::cout << "empty client manager initiated" << std::endl;
 
 }
+ClientConnectionManager::~ClientConnectionManager(){
+    delete clientObj;
+}
 
 void ClientConnectionManager::setClient(Client* Cli){
     this->clientObj = Cli;

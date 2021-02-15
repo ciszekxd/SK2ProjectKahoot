@@ -15,11 +15,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     this->currentPage = this->selectionPageObj;
 
-    //selectionPageConnections-------------------
-    connect(ui->ServerButton,&QPushButton::clicked,selectionPageObj,&selectionPage::goToSetPathPage);
-    connect(ui->ClientButton,&QPushButton::clicked,selectionPageObj,&selectionPage::goToClientConnectionPage);
-    //END-----------------------------------------
-
     //ClientConnectionPage------------------------
     connect(this, SIGNAL(endAll()), clientConnectionObj->getCCMObj(), SLOT(endConnection()));
     //END-----------------------------------------
@@ -29,19 +24,38 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     connect(this->setPathPageObj, SIGNAL(newServerMade()),this,SLOT(setServerObj()));
     //END-----------------------------------------
 
+    //GM------------------------------------------
+    connect(this->GMObj,SIGNAL(readyForSetUp()),this,SLOT(setUpGM()));
+    //END-----------------------------------------
+
+    currentPage = selectionPageObj;
+
+    setUpPage();
     runPage();
 
 }
+
+void MainWindow::setUpGM(){
+    this->gameServerObj = new GameServer(serverObj,QAMObj);
+    this->GMObj->setGameServerObj(gameServerObj);
+
+}
+
 void MainWindow::setServerObj(){
     this->serverObj = setPathPageObj->getServerObj();
 }
 
+void MainWindow::setQAMObj(){
+    this->QAMObj = setPathPageObj->getQAMObj();
+}
+
 void MainWindow::updatePageObjects(){
-    this->GMObj->setServerObj(serverObj);
+    connect(this->currentPage, SIGNAL(readyForChange()),this,SLOT(changePage()));
+    //this->GMObj->setGameServerObj();
 }
 
 void MainWindow::runPage(){
-     ui->stackedWidget->setCurrentIndex(currentPage->getPageIndex());
+    ui->stackedWidget->setCurrentIndex(currentPage->getPageIndex());
 }
 void MainWindow::setUpPage(){
     currentPage->setUpPage(ui);
@@ -57,7 +71,10 @@ void MainWindow::changePage(){
         currentPage = GMObj;
     }else if(newPage.compare("GamePage") == 0){
         currentPage = gamePageObj;
+    }else if(newPage.compare("selectionPage") == 0){
+        currentPage = selectionPageObj;
     }
+
     updatePageObjects();
     setUpPage();
     runPage();
@@ -66,7 +83,25 @@ void MainWindow::changePage(){
 
 MainWindow::~MainWindow()
 {
-    emit endAll();
-    std::cout << "finish" << std::endl;
+    std::cout << "finishing starts1" << std::endl;
+    delete this->selectionPageObj;
+    std::cout << "finishing starts2" << std::endl;
+    delete this->setPathPageObj;
+    std::cout << "finishing starts3" << std::endl;
+    delete this->GMObj;
+    std::cout << "finishing starts4" << std::endl;
+    delete this->gamePageObj;
+    std::cout << "finishing starts5" << std::endl;
+    delete this->clientConnectionObj;
+    std::cout << "finishing starts6" << std::endl;
+    delete this->serverObj;
+    std::cout << "finishing starts7" << std::endl;
+    delete this->QAMObj;
+    std::cout << "finishing starts8" << std::endl;
+    delete this->gameServerObj;
+    std::cout << "finishing starts9" << std::endl;
+
+
+    std::cout << "finished" << std::endl;
     delete ui;
 }

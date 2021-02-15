@@ -6,6 +6,7 @@ class clientConnectionPage : public Page
 {
 public:
     clientConnectionPage();
+    ~clientConnectionPage();
     void setUpPage(Ui::MainWindow*);
     void checkAgain();
     ClientConnectionManager* getCCMObj();

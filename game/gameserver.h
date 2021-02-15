@@ -3,14 +3,17 @@
 
 #include <QObject>
 #include "../server/server.h"
-#include "Questions/QnAManager.hpp"
+#include "questions/QnAManager.hpp"
+#include <iostream>
 
 class GameServer : public QObject
 {
     Q_OBJECT
 public:
     GameServer(Server*, QnAManager*);
+    ~GameServer();
     void sendQuestion(int);
+    void writeToClients(std::string);
 signals:
 
 private:

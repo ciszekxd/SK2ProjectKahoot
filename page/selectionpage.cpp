@@ -7,13 +7,22 @@ selectionPage::selectionPage()
     //connect(MainWindow::ui->ServerButton, &QPushButton::clicked, this, &MainWindow::changePage);
     //connect(ui->ClientButton, &QPushButton::clicked, this, &MainWindow::selectClientMode);
 }
+selectionPage::~selectionPage(){
+    delete tempUi;
+}
 /*
 int selectionPage::getPageIndex(){
     return this->pageIndex;
 }
 */
 
-void selectionPage::setUpPage(Ui::MainWindow*){
+void selectionPage::setUpPage(Ui::MainWindow* ui){
+
+    this->tempUi = ui;
+
+    connect(tempUi->ServerButton,&QPushButton::clicked,this,&selectionPage::goToSetPathPage);
+    connect(tempUi->ClientButton,&QPushButton::clicked,this,&selectionPage::goToClientConnectionPage);
+
     std::cout << "selection page runs" << std::endl;
 }
 

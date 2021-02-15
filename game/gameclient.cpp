@@ -8,6 +8,10 @@ GameClient::GameClient(ClientConnectionManager* CCM)
    this->currQuestion = new Question();
    connect(gameCCM, SIGNAL(readingStarts()),this,SLOT(processIncData()));
 }
+GameClient::~GameClient(){
+    delete currQuestion;
+    delete gameCCM;
+}
 
 void GameClient::processIncData(){
     std::string tempString;

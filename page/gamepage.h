@@ -6,6 +6,7 @@ class GamePage : public Page
 {
 public:
     GamePage();
+    ~GamePage();
     void setUpPage(Ui::MainWindow*);
 };
 

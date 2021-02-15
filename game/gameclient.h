@@ -2,7 +2,7 @@
 #define GAMECLIENT_H
 #include "../client/clientconnectionmanager.h"
 #include <QObject>
-#include "Questions/Question.hpp"
+#include "../questions/Question.hpp"
 
 class GameClient : public QObject
 {
@@ -11,6 +11,7 @@ class GameClient : public QObject
 public:
 
     GameClient(ClientConnectionManager*);
+    ~GameClient();
 
 
     std::string getQuestion();

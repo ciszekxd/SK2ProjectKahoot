@@ -9,6 +9,7 @@ class selectionPage : public Page
     Q_OBJECT
 public:
     explicit selectionPage();
+    ~selectionPage();
     int getPageIndex();
     void setUpPage(Ui::MainWindow*);
 

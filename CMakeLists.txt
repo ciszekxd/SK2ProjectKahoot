@@ -60,6 +60,10 @@ add_executable(
     ./page/gmpage.h
     ./page/gamepage.cpp
     ./page/gamepage.h
+    ./questions/ABCQandAInterface.hpp
+    ./questions/Answer.hpp
+    ./questions/QnAManager.hpp
+    ./questions/Question.hpp
     )
 
 

@@ -2,7 +2,7 @@
 // Created by ciszek on 31.12.2020.
 //
 #pragma once
-#include "ABCQandAInterface.hpp"
+
 #include <vector>
 #include <fstream>
 #include "Question.hpp"
@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-class QnAManager: public QandAInterface{
+class QnAManager{
 private:
     std::string path;
     std::vector<Question> questions;
@@ -31,7 +31,7 @@ public:
         }
     }
 
-    void loadQuestions() override{
+    void loadQuestions(){
 
         string tempStr;
         bool TorF;
@@ -61,7 +61,7 @@ public:
 
     }
 
-    Question getQuestion(int nr) override{
+    Question getQuestion(int nr) {
         return questions[nr];
     }
 

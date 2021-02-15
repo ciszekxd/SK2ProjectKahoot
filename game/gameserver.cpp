@@ -4,10 +4,20 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
 {
     this->serverObj = server;
     this->QnAMObj = QAM;
+    connect(this->serverObj, SIGNAL(usersNumberChanged()),this,SLOT(onUsersNumberChanged()));
+
+
 }
 
 GameServer::~GameServer(){
     std::cout << "dec active s" << std::endl;
+}
+void GameServer::onUsersNumberChanged(){
+    emit usersNumberChanged();
+}
+
+int GameServer::getUsersNumber(){
+    return serverObj->getUsersNumber();
 }
 
 void GameServer::sendQuestion(int Qnumber){
@@ -24,7 +34,7 @@ void GameServer::sendQuestion(int Qnumber){
 
 
 }
-//dorobić write to clients
+
 void GameServer::writeToClients(std::string str){
     serverObj->writeToClients(str);
 }

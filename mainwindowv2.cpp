@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     this->QAMObj = NULL;
     this->serverObj = NULL;
     this->gameServerObj = NULL;
+    this->gameClientObj = NULL;
 
 
     //ClientConnectionPage------------------------
@@ -32,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     connect(this->GMObj,SIGNAL(readyForSetUp()),this,SLOT(setUpGM()));
     //END-----------------------------------------
 
+    //GC------------------------------------------
+    connect(this->clientConnectionObj, SIGNAL(newGCMade()),this, SLOT(setGameClient()));
+    //END-----------------------------------------
     currentPage = selectionPageObj;
 
     setUpPage();
@@ -42,11 +46,16 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 void MainWindow::setUpGM(){
     this->gameServerObj = new GameServer(serverObj,QAMObj);
     this->GMObj->setGameServerObj(gameServerObj);
+    connect(this->gameServerObj,SIGNAL(usersNumberChanged()),this->GMObj,SLOT(showUsersNumber()));
 
 }
 
 void MainWindow::setServerObj(){
     this->serverObj = setPathPageObj->getServerObj();
+}
+
+void MainWindow::setGameClient(){
+    this->gameClientObj = clientConnectionObj->getGameClient();
 }
 
 void MainWindow::setQAMObj(){
@@ -73,7 +82,7 @@ void MainWindow::changePage(){
         currentPage = clientConnectionObj;
     }else if(newPage.compare("GMPage") == 0){
         currentPage = GMObj;
-    }else if(newPage.compare("GamePage") == 0){
+    }else if(newPage.compare("gamePage") == 0){
         currentPage = gamePageObj;
     }else if(newPage.compare("selectionPage") == 0){
         currentPage = selectionPageObj;
@@ -104,6 +113,8 @@ MainWindow::~MainWindow()
     std::cout << "finishing starts8" << std::endl;
     if(gameServerObj != NULL) delete this->gameServerObj;
     std::cout << "finishing starts9" << std::endl;
+    if(gameClientObj != NULL) delete this->gameClientObj;
+    std::cout << "finishing starts10" << std::endl;
 
     delete ui;
     std::cout << "finished" << std::endl;

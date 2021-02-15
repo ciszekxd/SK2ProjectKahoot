@@ -5,10 +5,21 @@ clientConnectionPage::clientConnectionPage()
     this->pageIndex = 4;
     this->connected = false;
     this->CCMObj = new ClientConnectionManager;
+    this->GCObj = new GameClient(CCMObj);
+    connect(this->GCObj,SIGNAL(gameStarts()),this,SLOT(gameStarts()));
+    emit newGCMade();
+
+
 }
 
 clientConnectionPage::~clientConnectionPage(){
     delete CCMObj;
+}
+
+void clientConnectionPage::gameStarts(){
+    if(this->connected){
+        goToGamePage();
+    }
 }
 
 void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
@@ -42,9 +53,19 @@ void clientConnectionPage::checkAgain(){
     }else{
         tempUi->statusConnected->setVisible(false);
         tempUi->statusDisconnected->setVisible(true);
+        connected = false;
     }
 }
 
+void clientConnectionPage::goToGamePage(){
+    nextPage = "gamePage";
+    emit readyForChange();
+}
+
+
 ClientConnectionManager* clientConnectionPage::getCCMObj(){
     return this->CCMObj;
+}
+GameClient* clientConnectionPage::getGameClient(){
+    return this->GCObj;
 }

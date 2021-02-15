@@ -15,7 +15,10 @@ public:
     void sendQuestion(int);
     void writeToClients(std::string);
 signals:
-
+    void usersNumberChanged();
+public slots:
+    void onUsersNumberChanged();
+    int getUsersNumber();
 private:
     Server* serverObj;
     QnAManager* QnAMObj;

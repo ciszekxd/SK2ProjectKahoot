@@ -7,13 +7,20 @@ GMPage::GMPage()
 }
 
 GMPage::~GMPage(){
-    delete gameServerObj;
+    std::cout << "gm page deleted" << std::endl;
 }
 
 void GMPage::setUpPage(Ui::MainWindow* ui){
     this->tempUi = ui;
     emit readyForSetUp();
+
+    connect(tempUi->startGame,&QPushButton::clicked,this,&GMPage::startGame);
     std::cout << "Game Master Page just set up!" << std::endl;
+}
+
+void GMPage::showUsersNumber(){
+    usersNumber = this->gameServerObj->getUsersNumber();
+    tempUi->numOfusers->setText(QString::number(usersNumber));
 }
 
 void GMPage::setGameServerObj(GameServer *newServer){

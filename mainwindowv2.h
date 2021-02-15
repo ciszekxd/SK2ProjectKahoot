@@ -42,19 +42,27 @@ public slots:
     void updatePageObjects();
     void setUpGM();
     void setServerObj();
+    void setGameClient();
 
 
 private:
+
+    //ui
     Ui::MainWindow *ui;
+
+    //pages
     Page* currentPage;
     selectionPage* selectionPageObj;
     setPathPage* setPathPageObj;
     clientConnectionPage* clientConnectionObj;
     GMPage* GMObj;
-    Server* serverObj;
     GamePage* gamePageObj;
+    //others
+    Server* serverObj;
     QnAManager* QAMObj;
+
     GameServer* gameServerObj;
+    GameClient* gameClientObj;
 
 
 

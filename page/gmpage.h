@@ -5,15 +5,22 @@
 
 class GMPage : public Page
 {
+    Q_OBJECT
 public:
     GMPage();
     ~GMPage();
     void setUpPage(Ui::MainWindow*);
+//    void showUsersNumber();
     void startGame();
     void setGameServerObj(GameServer*);
     void setQAMObj();
+
+public slots:
+    void showUsersNumber();
+
 private:
     GameServer* gameServerObj;
+    int usersNumber;
 
 };
 

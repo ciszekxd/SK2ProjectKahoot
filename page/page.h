@@ -9,6 +9,7 @@
 #include "../questions/QnAManager.hpp"
 #include "../server/server.h"
 #include "../game/gameserver.h"
+#include "../game/gameclient.h"
 
 class Page : public QObject
 {
@@ -25,7 +26,10 @@ signals:
     void readyForChange();
     void newServerMade();
     void newQAMMade();
+    void newGCMade();
     void readyForSetUp();
+
+
 
 protected:
     int pageIndex;

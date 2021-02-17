@@ -16,6 +16,7 @@ public:
 
     std::string getQuestion();
     std::string getAnswer(int);
+    void sendClientsName();
 
 public slots:
 
@@ -25,10 +26,12 @@ public slots:
 
 signals:
     void gameStarts();
+    void changeQuestions();
 private:
 
     Question* currQuestion;
     ClientConnectionManager* gameCCM;
+    int rcvdAnswers;
 
 };
 

@@ -20,6 +20,7 @@ public:
 signals:
 
     void usersNumberChanged();
+    void newCliName();
 
 private slots:
 
@@ -32,6 +33,7 @@ private slots:
 
 public:
     int getUsersNumber();
+    QList<Client *> getPlayerList();
     void runServer();
     void writeToClients(std::string);
 

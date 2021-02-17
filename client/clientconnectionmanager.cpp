@@ -16,10 +16,17 @@ ClientConnectionManager::~ClientConnectionManager(){
 
 void ClientConnectionManager::setClient(Client* Cli){
     this->clientObj = Cli;
-    connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
+
+    //connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
 }
-void ClientConnectionManager::writeToServer(){
-    clientObj->getSocket()->write("hello amigo client here");
+
+Client *ClientConnectionManager::getClient(){
+    return this->clientObj;
+}
+
+void ClientConnectionManager::writeToServer(std::string mes){
+     QByteArray byteArray(mes.c_str(), mes.length());
+    clientObj->getSocket()->write(byteArray);
     std::cout << "write to server" << std::endl;
 }
 
@@ -29,7 +36,7 @@ void ClientConnectionManager::emitReadingStarts(){
 
 std::string ClientConnectionManager::readFromServer(){
     QByteArray buffer;
-    buffer = clientObj->getSocket()->readAll();
+    buffer = clientObj->getSocket()->readLine();
     std::string text = buffer.toStdString();
     //std::cout << text << std::endl;
     return text;

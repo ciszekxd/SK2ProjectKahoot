@@ -41,4 +41,8 @@ public:
         return ans;
     }
 
+    std::string getAnswer(int x){
+        return QAnswers[x].getContent();
+    }
+
 };

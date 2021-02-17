@@ -14,6 +14,7 @@ void GMPage::setUpPage(Ui::MainWindow* ui){
     this->tempUi = ui;
     emit readyForSetUp();
 
+
     connect(tempUi->startGame,&QPushButton::clicked,this,&GMPage::startGame);
     std::cout << "Game Master Page just set up!" << std::endl;
 }
@@ -30,4 +31,19 @@ void GMPage::setGameServerObj(GameServer *newServer){
 void GMPage::startGame(){
     this->gameServerObj->writeToClients("START");
     tempUi->startGame->setDisabled(true);
+}
+
+void GMPage::showPlayersNames()
+{
+    QList<Client*> tempQlist = gameServerObj->getServer()->getPlayerList();
+    std::string tempString = "";
+
+    for(int i=0; i<tempQlist.count();i++){
+        tempString = tempString + tempQlist[i]->getName();
+        tempString = tempString + "\n";
+    }
+
+    QString tempQstr = QString::fromUtf8(tempString.c_str());
+
+    tempUi->players->setText(tempQstr);
 }

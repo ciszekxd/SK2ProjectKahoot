@@ -14,9 +14,11 @@ public:
     ClientConnectionManager();
     ~ClientConnectionManager();
 
-    void writeToServer();
+    void writeToServer(std::string);
     bool isConnected();
     void setClient(Client*);
+    Client* getClient();
+
 
 public slots:
     void emitReadingStarts();

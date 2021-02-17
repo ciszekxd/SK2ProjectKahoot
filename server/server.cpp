@@ -2,7 +2,7 @@
 #include <QObject>
 #include <QString>
 #include <QTcpSocket>
-
+#include <string>
 
 Server::Server(){
 
@@ -41,6 +41,7 @@ void Server::onNewConnection(){
     this->PlayerList.push_back(tempPlayer);
 
     connect(this->PlayerList.last()->getSocket(), SIGNAL(readyRead()), this, SLOT(readFromClient()));
+
     //connect(this->PlayerList.last()->getSocket(), &QTcpSocket::disconnected, this, &Server::onDisconnect);
     std::cout << "new connection" << std::endl;
 
@@ -58,17 +59,32 @@ int Server::getUsersNumber(){
     return this->connectedUsers;
 }
 
+QList<Client *> Server::getPlayerList()
+{
+    return this->PlayerList;
+}
+
 void Server::signalTest(){
     std::cout << "test string" << std::endl;
 }
 
 void Server::readFromClient(){
-     QByteArray buffer;
-     QTcpSocket* readSocket = qobject_cast<QTcpSocket*>(sender());
-     buffer = readSocket->readAll();
 
-     std::string mytext = buffer.toStdString();
-     std::cout << mytext << std::endl;
+    QByteArray buffer;
+    QTcpSocket* readSocket = qobject_cast<QTcpSocket*>(sender());
+    buffer = readSocket->readAll();
+
+    std::string myText = buffer.toStdString();
+    //std::string tempStr = myText.at(0);
+    if(myText.at(0) == 'N'){
+        myText = myText.substr(2,myText.size());
+        for (int i=0; i<PlayerList.count();i++){
+            if(PlayerList[i]->getSocket() == readSocket) PlayerList[i]->setName(myText);
+        }
+        emit newCliName();
+    }
+
+   // std::cout << mytext << std::endl;
 
 }
 

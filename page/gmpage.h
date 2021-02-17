@@ -12,11 +12,13 @@ public:
     void setUpPage(Ui::MainWindow*);
 //    void showUsersNumber();
     void startGame();
+
     void setGameServerObj(GameServer*);
     void setQAMObj();
 
 public slots:
     void showUsersNumber();
+    void showPlayersNames();
 
 private:
     GameServer* gameServerObj;

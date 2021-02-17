@@ -6,7 +6,11 @@ GameClient::GameClient(ClientConnectionManager* CCM)
 {
    this->gameCCM = CCM;
    this->currQuestion = new Question();
-   connect(gameCCM, SIGNAL(readingStarts()),this,SLOT(processIncData()));
+   //I!!!!!!!!!!!!!!!!!!!!!!!!!!
+   std::cout << "connect starts" << std::endl;
+   connect(gameCCM->getClient()->getSocket(), SIGNAL(readyRead()),this,SLOT(processIncData()));
+   std::cout << "connect ends" << std::endl;
+   rcvdAnswers = 0;
 }
 GameClient::~GameClient(){
     delete currQuestion;
@@ -14,18 +18,37 @@ GameClient::~GameClient(){
 }
 
 void GameClient::processIncData(){
-    std::string tempString;
+    /*std::string tempString;
     std::string key = gameCCM->readFromServer();
-    std::cout << key << std::endl;
-    if(key.compare("Q") == 0){
-        tempString = gameCCM->readFromServer();
-        currQuestion->setQuestion(tempString);
-        for(int i=0; i<4; i++){
-            tempString = gameCCM->readFromServer();
-            currQuestion->setAnswer(tempString);
+    std::cout << key << std::endl;*/
+
+    std::string tempString = gameCCM->readFromServer();
+
+
+    if(tempString.compare("START") == 0){
+            emit gameStarts();
+            sendClientsName();
+    }else{
+
+        std::string tempMes = tempString.substr(2,tempString.size()-2);
+
+        if(tempString.at(0) == 'Q'){
+            currQuestion->setQuestion(tempMes);
+            for(int j=0; j<4; j++){
+                tempString = gameCCM->readFromServer();
+                tempMes = tempString.substr(2,tempString.size()-2);
+
+                if(tempString.at(0) == 'A'){
+                    currQuestion->setAnswer(tempMes);
+                    //rcvdAnswers++;
+                    //if(rcvdAnswers >= 4){
+
+                        //rcvdAnswers = 0;
+                    //}
+                }
+            }
+            emit changeQuestions();
         }
-    }else if(key.compare("START") == 0){
-        emit gameStarts();
     }
 }
 
@@ -37,4 +60,10 @@ std::string GameClient::getQuestion(){
 std::string GameClient::getAnswer(int AnsNum){
     Answer* tempAns = this->currQuestion->getAnswer();
     return tempAns[AnsNum].getContent();
+}
+
+void GameClient::sendClientsName()
+{
+    std::string tempName = "N " + gameCCM->getClient()->getName();
+    this->gameCCM->writeToServer(tempName);
 }

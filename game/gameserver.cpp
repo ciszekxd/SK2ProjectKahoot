@@ -5,11 +5,14 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
     this->serverObj = server;
     this->QnAMObj = QAM;
     connect(this->serverObj, SIGNAL(usersNumberChanged()),this,SLOT(onUsersNumberChanged()));
+    currentQuestion = 0;
+    Timer = new QTimer(this);
 
 
 }
 
 GameServer::~GameServer(){
+    delete Timer;
     std::cout << "dec active s" << std::endl;
 }
 void GameServer::onUsersNumberChanged(){
@@ -21,15 +24,15 @@ int GameServer::getUsersNumber(){
 }
 
 void GameServer::sendQuestion(int Qnumber){
-    serverObj->writeToClients("Q");
-
+    //serverObj->writeToClients("Q");
+    std::string tempStr = "Q ";
     //send question
-    Question tempQue = QnAMObj->getQuestion(Qnumber);
-    serverObj->writeToClients(tempQue.getQuestion());
-
+    Question tempQue = QnAMObj->getQuestion(0);
+    serverObj->writeToClients(tempStr + tempQue.getQuestion() + "\n");
+    tempStr = "A ";
     Answer* tempAns = tempQue.getAnswer();
     for(int j=0; j < 4; j++){
-        serverObj->writeToClients(tempAns[j].getContent());
+        serverObj->writeToClients(tempStr + tempAns[j].getContent() + "\n");
     }
 
 
@@ -37,4 +40,9 @@ void GameServer::sendQuestion(int Qnumber){
 
 void GameServer::writeToClients(std::string str){
     serverObj->writeToClients(str);
+}
+
+Server *GameServer::getServer()
+{
+    return this->serverObj;
 }

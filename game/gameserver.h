@@ -5,6 +5,7 @@
 #include "../server/server.h"
 #include "questions/QnAManager.hpp"
 #include <iostream>
+#include <QTimer>
 
 class GameServer : public QObject
 {
@@ -12,16 +13,21 @@ class GameServer : public QObject
 public:
     GameServer(Server*, QnAManager*);
     ~GameServer();
+    void interpreteMesFromClients();
     void sendQuestion(int);
     void writeToClients(std::string);
+    Server* getServer();
 signals:
     void usersNumberChanged();
+    void newCliName();
 public slots:
     void onUsersNumberChanged();
     int getUsersNumber();
 private:
     Server* serverObj;
     QnAManager* QnAMObj;
+    int currentQuestion;
+    QTimer* Timer;
 };
 
 #endif // GAMESERVER_H

@@ -52,6 +52,7 @@ public:
                     std::getline(inFile, tempStr);
                     tempQue.setAnswer(tempStr,TorF);
                 }
+                questions.push_back(tempQue);
             }else{
                 std::getline(inFile,tempStr);
             }

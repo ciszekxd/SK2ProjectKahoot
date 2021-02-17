@@ -152,13 +152,39 @@ textsize: 30
       <property name="geometry">
        <rect>
         <x>450</x>
-        <y>200</y>
+        <y>60</y>
         <width>371</width>
         <height>141</height>
        </rect>
       </property>
       <property name="text">
        <string>start Game</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="debugSendQuestion">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>60</y>
+        <width>391</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>debug send question</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="players">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>320</y>
+        <width>481</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -226,6 +252,19 @@ textsize: 30
       </property>
       <property name="text">
        <string>question</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="debugSendName">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>240</y>
+        <width>141</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>debugsendName</string>
       </property>
      </widget>
     </widget>

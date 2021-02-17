@@ -32,7 +32,7 @@ public:
     void runPage();
     //setters
 
-    void setQAMObj();
+
 
 
 signals:
@@ -41,8 +41,10 @@ public slots:
     void changePage();
     void updatePageObjects();
     void setUpGM();
+    void setUpGP();
     void setServerObj();
     void setGameClient();
+    void setQAMObj();
 
 
 private:

@@ -5,8 +5,8 @@ clientConnectionPage::clientConnectionPage()
     this->pageIndex = 4;
     this->connected = false;
     this->CCMObj = new ClientConnectionManager;
-    this->GCObj = new GameClient(CCMObj);
-    connect(this->GCObj,SIGNAL(gameStarts()),this,SLOT(gameStarts()));
+
+
     emit newGCMade();
 
 
@@ -29,6 +29,8 @@ void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
     Client* newClient = new Client("12137","127.0.0.1", "PlaceHolderName");
 
     this->CCMObj->setClient(newClient);
+    this->GCObj = new GameClient(CCMObj);
+    connect(this->GCObj,SIGNAL(gameStarts()),this,SLOT(gameStarts()));
 
     if(CCMObj->isConnected()){
         ui->statusConnected->setVisible(true);

@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     //general-------------------------------------
     connect(this->currentPage, SIGNAL(readyForChange()),this,SLOT(changePage()));
     connect(this->setPathPageObj, SIGNAL(newServerMade()),this,SLOT(setServerObj()));
+    connect(this->setPathPageObj, SIGNAL(newQAMMade()),this,SLOT(setQAMObj()));
     //END-----------------------------------------
 
     //GM------------------------------------------
@@ -36,6 +37,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     //GC------------------------------------------
     connect(this->clientConnectionObj, SIGNAL(newGCMade()),this, SLOT(setGameClient()));
     //END-----------------------------------------
+
+    //GP------------------------------------------
+    connect(this->gamePageObj,SIGNAL(readyForSetUp()),this,SLOT(setUpGP()));
+    //END-----------------------------------------
+
     currentPage = selectionPageObj;
 
     setUpPage();
@@ -47,7 +53,18 @@ void MainWindow::setUpGM(){
     this->gameServerObj = new GameServer(serverObj,QAMObj);
     this->GMObj->setGameServerObj(gameServerObj);
     connect(this->gameServerObj,SIGNAL(usersNumberChanged()),this->GMObj,SLOT(showUsersNumber()));
+    connect(serverObj, SIGNAL(newCliName()), GMObj, SLOT(showPlayersNames()));
+    connect(ui->debugSendQuestion,&QPushButton::clicked,gameServerObj,&GameServer::sendQuestion);
 
+}
+
+void MainWindow::setUpGP()
+{
+    this->gameClientObj = clientConnectionObj->getGameClient();
+    this->gamePageObj->setGameClient(gameClientObj);
+    connect(ui->debugSendName,&QPushButton::clicked,gameClientObj,&GameClient::sendClientsName);
+    connect(gameClientObj,SIGNAL(changeQuestions()),gamePageObj,SLOT(setQuestionsAtPage()));
+    //this->gamePageObj = new GameClient(this->clientConnectionObj);
 }
 
 void MainWindow::setServerObj(){

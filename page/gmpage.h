@@ -16,9 +16,12 @@ public:
     void setGameServerObj(GameServer*);
     void setQAMObj();
 
+
+
 public slots:
     void showUsersNumber();
     void showPlayersNames();
+    void showTimer();
 
 private:
     GameServer* gameServerObj;

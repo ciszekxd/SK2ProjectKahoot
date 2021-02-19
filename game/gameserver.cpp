@@ -7,6 +7,9 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
     connect(this->serverObj, SIGNAL(usersNumberChanged()),this,SLOT(onUsersNumberChanged()));
     currentQuestion = 0;
     Timer = new QTimer(this);
+    Timer->start(1000);
+    connect(Timer,SIGNAL(timeout()),this,SLOT(nextSecond()));
+    timerClock = 0;
 
 
 }
@@ -15,6 +18,19 @@ GameServer::~GameServer(){
     delete Timer;
     std::cout << "dec active s" << std::endl;
 }
+
+int GameServer::getCurrClock(){
+    return timerClock;
+}
+
+void GameServer::nextSecond(){
+    if(timerClock++ >= 60){
+        timerClock = 0;
+    }
+    emit nextSec();
+}
+
+
 void GameServer::onUsersNumberChanged(){
     emit usersNumberChanged();
 }

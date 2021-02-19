@@ -21,6 +21,8 @@ void GamePage::setUpPage(Ui::MainWindow *ui){
     std::cout << "game page set up!" << std::endl;
 }
 
+
+
 void GamePage::setQuestionsAtPage()
 {
     QString tempQstr;
@@ -40,4 +42,20 @@ void GamePage::setQuestionsAtPage()
 
     tempQstr = QString::fromUtf8(GCObj->getAnswer(3).c_str());
     tempUi->Answer4->setText(tempQstr);
+}
+
+void GamePage::disableAnswers()
+{
+    tempUi->Answer1->setDisabled(true);
+    tempUi->Answer2->setDisabled(true);
+    tempUi->Answer3->setDisabled(true);
+    tempUi->Answer4->setDisabled(true);
+}
+
+void GamePage::enableAnswers()
+{
+    tempUi->Answer1->setEnabled(true);
+    tempUi->Answer2->setEnabled(true);
+    tempUi->Answer3->setEnabled(true);
+    tempUi->Answer4->setEnabled(true);
 }

@@ -10,6 +10,11 @@ GMPage::~GMPage(){
     std::cout << "gm page deleted" << std::endl;
 }
 
+void GMPage::showTimer(){
+    QString time = QString::number(gameServerObj->getCurrClock());
+    tempUi->timer->setText(time);
+}
+
 void GMPage::setUpPage(Ui::MainWindow* ui){
     this->tempUi = ui;
     emit readyForSetUp();

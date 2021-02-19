@@ -187,6 +187,19 @@ textsize: 30
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="timer">
+      <property name="geometry">
+       <rect>
+        <x>1210</x>
+        <y>230</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="gamerPage">
      <widget class="QPushButton" name="Answer1">

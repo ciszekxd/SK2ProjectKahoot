@@ -11,6 +11,10 @@ GameClient::GameClient(ClientConnectionManager* CCM)
    connect(gameCCM->getClient()->getSocket(), SIGNAL(readyRead()),this,SLOT(processIncData()));
    std::cout << "connect ends" << std::endl;
    rcvdAnswers = 0;
+
+
+
+
 }
 GameClient::~GameClient(){
     delete currQuestion;
@@ -66,4 +70,21 @@ void GameClient::sendClientsName()
 {
     std::string tempName = "N " + gameCCM->getClient()->getName();
     this->gameCCM->writeToServer(tempName);
+}
+
+void GameClient::sendUserAnswer1()
+{
+    this->gameCCM->writeToServer("R 1");
+}
+void GameClient::sendUserAnswer2()
+{
+    this->gameCCM->writeToServer("R 2");
+}
+void GameClient::sendUserAnswer3()
+{
+    this->gameCCM->writeToServer("R 3");
+}
+void GameClient::sendUserAnswer4()
+{
+    this->gameCCM->writeToServer("R 4");
 }

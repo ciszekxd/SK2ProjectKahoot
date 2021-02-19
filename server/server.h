@@ -24,10 +24,11 @@ signals:
 
 private slots:
 
+  //  void readingHandlerNeeded();
     void onDisconnect();
     void onNewConnection();
     void signalTest();
-    void readFromClient();
+    //void readFromClient();
     //void sendQuestionAndAnswers();
 
 

@@ -17,6 +17,11 @@ public:
     std::string getQuestion();
     std::string getAnswer(int);
     void sendClientsName();
+    void sendUserAnswer1();
+    void sendUserAnswer2();
+    void sendUserAnswer3();
+    void sendUserAnswer4();
+
 
 public slots:
 

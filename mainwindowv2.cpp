@@ -53,7 +53,7 @@ void MainWindow::setUpGM(){
     this->gameServerObj = new GameServer(serverObj,QAMObj);
     this->GMObj->setGameServerObj(gameServerObj);
     connect(this->gameServerObj,SIGNAL(usersNumberChanged()),this->GMObj,SLOT(showUsersNumber()));
-    connect(serverObj, SIGNAL(newCliName()), GMObj, SLOT(showPlayersNames()));
+    connect(gameServerObj, SIGNAL(updateCliNaS()), GMObj, SLOT(showPlayersNames()));
     connect(ui->debugSendQuestion,&QPushButton::clicked,gameServerObj,&GameServer::sendQuestion);
 
 }
@@ -65,6 +65,12 @@ void MainWindow::setUpGP()
     connect(ui->debugSendName,&QPushButton::clicked,gameClientObj,&GameClient::sendClientsName);
     connect(gameClientObj,SIGNAL(changeQuestions()),gamePageObj,SLOT(setQuestionsAtPage()));
     //this->gamePageObj = new GameClient(this->clientConnectionObj);
+
+    //answer buttons
+    connect(ui->Answer1, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer1);
+    connect(ui->Answer2, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer2);
+    connect(ui->Answer3, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer3);
+    connect(ui->Answer4, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer4);
 }
 
 void MainWindow::setServerObj(){

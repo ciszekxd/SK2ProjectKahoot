@@ -17,12 +17,17 @@ public:
     void sendQuestion(int);
     void writeToClients(std::string);
     Server* getServer();
+    Client *findClient(QTcpSocket*);
+    void givePoints(Client*);
+
 signals:
     void usersNumberChanged();
-    void newCliName();
+    void updateCliNaS();
 public slots:
+    void readFromClient();
     void onUsersNumberChanged();
     int getUsersNumber();
+    void startGame();
 private:
     Server* serverObj;
     QnAManager* QnAMObj;

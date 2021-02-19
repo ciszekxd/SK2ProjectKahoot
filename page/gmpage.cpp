@@ -29,9 +29,10 @@ void GMPage::setGameServerObj(GameServer *newServer){
 }
 
 void GMPage::startGame(){
-    this->gameServerObj->writeToClients("START");
+    gameServerObj->startGame();
     tempUi->startGame->setDisabled(true);
 }
+
 
 void GMPage::showPlayersNames()
 {
@@ -39,7 +40,8 @@ void GMPage::showPlayersNames()
     std::string tempString = "";
 
     for(int i=0; i<tempQlist.count();i++){
-        tempString = tempString + tempQlist[i]->getName();
+        tempString = tempString + tempQlist[i]->getName() + " : ";
+        tempString = tempString + std::to_string(tempQlist[i]->getScore());
         tempString = tempString + "\n";
     }
 

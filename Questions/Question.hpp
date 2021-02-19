@@ -45,4 +45,11 @@ public:
         return QAnswers[x].getContent();
     }
 
+    int getRightAnswer(){
+        for(int i=0; i<4; i++){
+            if(QAnswers[i].getIsGood()) return i;
+        }
+        return -1;
+    }
+
 };

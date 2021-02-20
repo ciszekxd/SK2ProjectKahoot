@@ -10,7 +10,7 @@ class ClientConnectionManager: public QObject
 
 public:
 
-    //ClientConnectionManager(Client*);
+
     ClientConnectionManager();
     ~ClientConnectionManager();
 

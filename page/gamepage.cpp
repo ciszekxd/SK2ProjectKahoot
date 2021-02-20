@@ -44,6 +44,18 @@ void GamePage::setQuestionsAtPage()
     tempUi->Answer4->setText(tempQstr);
 }
 
+void GamePage::showWinner(){
+    tempUi->Answer1->setVisible(false);
+    tempUi->Answer2->setVisible(false);
+    tempUi->Answer3->setVisible(false);
+    tempUi->Answer4->setVisible(false);
+
+    QString winner = QString::fromStdString(GCObj->getWinner());
+    tempUi->Winner->setText(winner);
+
+}
+
+
 void GamePage::disableAnswers()
 {
     tempUi->Answer1->setDisabled(true);

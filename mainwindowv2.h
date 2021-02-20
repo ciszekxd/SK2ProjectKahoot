@@ -56,7 +56,7 @@ private:
     Page* currentPage;
     selectionPage* selectionPageObj;
     setPathPage* setPathPageObj;
-    clientConnectionPage* clientConnectionObj;
+    clientConnectionPage* clientConnectionPageObj;
     GMPage* GMObj;
     GamePage* gamePageObj;
     //others

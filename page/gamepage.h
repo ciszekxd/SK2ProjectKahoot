@@ -15,6 +15,7 @@ public slots:
     void setQuestionsAtPage();
     void disableAnswers();
     void enableAnswers();
+    void showWinner();
 
 private:
     GameClient* GCObj;

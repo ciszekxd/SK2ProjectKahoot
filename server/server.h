@@ -27,9 +27,7 @@ private slots:
   //  void readingHandlerNeeded();
     void onDisconnect();
     void onNewConnection();
-    void signalTest();
-    //void readFromClient();
-    //void sendQuestionAndAnswers();
+
 
 
 public:

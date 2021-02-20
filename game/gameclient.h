@@ -23,20 +23,26 @@ public:
     void sendUserAnswer4();
 
 
+
 public slots:
 
     void processIncData();
+    std::string getWinner();
     //void sendResponce();
     //void chooseResponce();
 
 signals:
+    void endGame();
     void gameStarts();
     void changeQuestions();
+    void block();
+    void unblock();
 private:
 
     Question* currQuestion;
     ClientConnectionManager* gameCCM;
     int rcvdAnswers;
+    std::string winner;
 
 };
 

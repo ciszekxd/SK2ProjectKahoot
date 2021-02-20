@@ -5,7 +5,9 @@ clientConnectionPage::clientConnectionPage()
     this->pageIndex = 4;
     this->connected = false;
     this->CCMObj = new ClientConnectionManager;
-
+    CCpassed = false;
+    GCpassed = false;
+    GCsetted = false;
 
     emit newGCMade();
 
@@ -13,7 +15,11 @@ clientConnectionPage::clientConnectionPage()
 }
 
 clientConnectionPage::~clientConnectionPage(){
-    delete CCMObj;
+    if(!CCpassed) delete CCMObj;
+    std::cout << "CCMObj deleted" << std::endl;
+    if(!GCpassed && GCsetted) delete GCObj;
+    std::cout << "GCObj deleted" << std::endl;
+
 }
 
 void clientConnectionPage::gameStarts(){
@@ -30,6 +36,7 @@ void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
 
     this->CCMObj->setClient(newClient);
     this->GCObj = new GameClient(CCMObj);
+    GCsetted = true;
     connect(this->GCObj,SIGNAL(gameStarts()),this,SLOT(gameStarts()));
 
     if(CCMObj->isConnected()){
@@ -66,8 +73,11 @@ void clientConnectionPage::goToGamePage(){
 
 
 ClientConnectionManager* clientConnectionPage::getCCMObj(){
+    CCpassed = true;
     return this->CCMObj;
+
 }
 GameClient* clientConnectionPage::getGameClient(){
+    GCpassed = true;
     return this->GCObj;
 }

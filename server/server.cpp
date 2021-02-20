@@ -13,9 +13,10 @@ Server::Server(){
 }
 
 Server::~Server(){
-    serverObj->deleteLater();
 
     qDeleteAll(PlayerList.begin(), PlayerList.end());
+    serverObj->deleteLater();
+
 
 }
 
@@ -37,7 +38,7 @@ void Server::onNewConnection(){
     //connect on tempPlayer's socket won't work if declared befor setSocket below
     tempPlayer->setSocket(serverObj->nextPendingConnection());
     connect(tempPlayer->getSocket(),&QTcpSocket::disconnected, this, &Server::onDisconnect);
-    connect(tempPlayer->getSocket(),&QTcpSocket::disconnected,tempPlayer->getSocket(), &QTcpSocket::deleteLater);
+    //connect(tempPlayer->getSocket(),&QTcpSocket::disconnected,tempPlayer->getSocket(), &QTcpSocket::deleteLater);
     this->PlayerList.push_back(tempPlayer);
 
     //connect(this->PlayerList.last()->getSocket(), SIGNAL(readyRead()), this, SLOT(readFromClient()));
@@ -64,37 +65,7 @@ QList<Client *> Server::getPlayerList()
     return this->PlayerList;
 }
 
-void Server::signalTest(){
-    std::cout << "test string" << std::endl;
-}
 
-//void Server::readFromClient(){
-
-//    emit readingHandlerNeeded();
-
-/*
-    QByteArray buffer;
-    QTcpSocket* readSocket = qobject_cast<QTcpSocket*>(sender());
-
-    buffer = readSocket->readLine();
-    std::string myText = buffer.toStdString();
-    std::string myTextContent = myText.substr(2,myText.size());
-
-    //std::string tempStr = myText.at(0);
-    if(myText.at(0) == 'N'){
-        for (int i=0; i<PlayerList.count();i++){
-            if(PlayerList[i]->getSocket() == readSocket) PlayerList[i]->setName(myTextContent);
-        }
-        emit newCliName();
-    }else if(myText.at(0) == 'R'){
-        int rcvedAns = std::stoi(myTextContent);
-
-
-    }
-
-   // std::cout << mytext << std::endl;
-*/
-//}
 
 
 void Server::writeToClients(std::string text){

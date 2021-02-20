@@ -15,14 +15,11 @@ Client::Client(QString port, QString ip, QString name)
 
 }
 Client::~Client(){
+    std::cout << "dellsocket start" << std::endl;
     socketObj->deleteLater();
+    std::cout << "dellsocket end" << std::endl;
 }
-/*
-void Client::quitFromServerGracefully(){
-    std::cout << "<asiodaoinfisdnfisnfsifunsfisfsdudnfsu"<< std::endl;
-    //emit userQuits();
-}
-*/
+
 
 // version without auto connection
 Client::Client()

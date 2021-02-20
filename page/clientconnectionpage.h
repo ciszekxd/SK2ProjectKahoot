@@ -22,6 +22,9 @@ private:
     ClientConnectionManager* CCMObj;
     GameClient* GCObj;
     bool connected;
+    bool CCpassed;
+    bool GCpassed;
+    bool GCsetted;
 
 };
 

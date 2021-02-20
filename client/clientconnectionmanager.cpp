@@ -1,10 +1,7 @@
 #include "clientconnectionmanager.h"
 #include <iostream>
 
-/*ClientConnectionManager::ClientConnectionManager(Client* newClient){
-    this->clientObj = newClient;
-    connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
-}*/
+
 ClientConnectionManager::ClientConnectionManager(){
     clientObj = NULL;
     std::cout << "empty client manager initiated" << std::endl;
@@ -17,7 +14,6 @@ ClientConnectionManager::~ClientConnectionManager(){
 void ClientConnectionManager::setClient(Client* Cli){
     this->clientObj = Cli;
 
-    //connect(clientObj->getSocket(), SIGNAL(readyRead()), this, SLOT(emitReadingStarts()));
 }
 
 Client *ClientConnectionManager::getClient(){

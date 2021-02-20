@@ -10,11 +10,7 @@ selectionPage::selectionPage()
 selectionPage::~selectionPage(){
     std::cout << "dec active sp" << std::endl;
 }
-/*
-int selectionPage::getPageIndex(){
-    return this->pageIndex;
-}
-*/
+
 
 void selectionPage::setUpPage(Ui::MainWindow* ui){
 

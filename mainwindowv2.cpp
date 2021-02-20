@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     this->selectionPageObj = new selectionPage;
     this->setPathPageObj = new setPathPage;
-    this->clientConnectionObj = new clientConnectionPage;
+    this->clientConnectionPageObj = new clientConnectionPage;
     this->GMObj = new GMPage;
     this->gamePageObj = new GamePage;
 
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
     //ClientConnectionPage------------------------
-    connect(this, SIGNAL(endAll()), clientConnectionObj->getCCMObj(), SLOT(endConnection()));
+    connect(this, SIGNAL(endAll()), clientConnectionPageObj->getCCMObj(), SLOT(endConnection()));
     //END-----------------------------------------
 
     //general-------------------------------------
@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     //END-----------------------------------------
 
     //GC------------------------------------------
-    connect(this->clientConnectionObj, SIGNAL(newGCMade()),this, SLOT(setGameClient()));
+    connect(this->clientConnectionPageObj, SIGNAL(newGCMade()),this, SLOT(setGameClient()));
     //END-----------------------------------------
 
     //GP------------------------------------------
@@ -60,7 +60,7 @@ void MainWindow::setUpGM(){
 
 void MainWindow::setUpGP()
 {
-    this->gameClientObj = clientConnectionObj->getGameClient();
+    this->gameClientObj = clientConnectionPageObj->getGameClient();
     this->gamePageObj->setGameClient(gameClientObj);
     connect(ui->debugSendName,&QPushButton::clicked,gameClientObj,&GameClient::sendClientsName);
     connect(gameClientObj,SIGNAL(changeQuestions()),gamePageObj,SLOT(setQuestionsAtPage()));
@@ -71,6 +71,9 @@ void MainWindow::setUpGP()
     connect(ui->Answer2, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer2);
     connect(ui->Answer3, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer3);
     connect(ui->Answer4, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer4);
+
+    connect(gameClientObj,SIGNAL(block()),gamePageObj, SLOT(disableAnswers()));
+    connect(gameClientObj,SIGNAL(unblock()),gamePageObj,SLOT(enableAnswers()));
 }
 
 void MainWindow::setServerObj(){
@@ -78,7 +81,7 @@ void MainWindow::setServerObj(){
 }
 
 void MainWindow::setGameClient(){
-    this->gameClientObj = clientConnectionObj->getGameClient();
+    this->gameClientObj = clientConnectionPageObj->getGameClient();
 }
 
 void MainWindow::setQAMObj(){
@@ -102,7 +105,7 @@ void MainWindow::changePage(){
     if(newPage.compare("setPathPage") == 0){
         currentPage = setPathPageObj;
     }else if(newPage.compare("clientConnectionPage") == 0){
-        currentPage = clientConnectionObj;
+        currentPage = clientConnectionPageObj;
     }else if(newPage.compare("GMPage") == 0){
         currentPage = GMObj;
     }else if(newPage.compare("gamePage") == 0){
@@ -128,7 +131,7 @@ MainWindow::~MainWindow()
     std::cout << "finishing starts4" << std::endl;
     delete this->gamePageObj;
     std::cout << "finishing starts5" << std::endl;
-    delete this->clientConnectionObj;
+    delete this->clientConnectionPageObj;
     std::cout << "finishing starts6" << std::endl;
     if(serverObj != NULL) delete this->serverObj;
     std::cout << "finishing starts7" << std::endl;

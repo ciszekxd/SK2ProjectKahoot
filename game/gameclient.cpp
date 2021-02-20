@@ -11,15 +11,24 @@ GameClient::GameClient(ClientConnectionManager* CCM)
    connect(gameCCM->getClient()->getSocket(), SIGNAL(readyRead()),this,SLOT(processIncData()));
    std::cout << "connect ends" << std::endl;
    rcvdAnswers = 0;
+   winner = "NONE";
 
 
 
 
 }
 GameClient::~GameClient(){
+    std::cout << "del currQuestuin" << std::endl;
     delete currQuestion;
+    std::cout << "del clientconnectionmanager" << std::endl;
     delete gameCCM;
+    std::cout << "del clientconnectionmanager end" << std::endl;
 }
+
+std::string GameClient::getWinner(){
+    return winner;
+}
+
 
 void GameClient::processIncData(){
     /*std::string tempString;
@@ -44,14 +53,15 @@ void GameClient::processIncData(){
 
                 if(tempString.at(0) == 'A'){
                     currQuestion->setAnswer(tempMes);
-                    //rcvdAnswers++;
-                    //if(rcvdAnswers >= 4){
 
-                        //rcvdAnswers = 0;
-                    //}
                 }
             }
             emit changeQuestions();
+            emit unblock();
+        }else if(tempString.at(0) == 'W'){
+            winner = tempMes;
+            emit endGame();
+
         }
     }
 }
@@ -75,16 +85,20 @@ void GameClient::sendClientsName()
 void GameClient::sendUserAnswer1()
 {
     this->gameCCM->writeToServer("R 1");
+    emit block();
 }
 void GameClient::sendUserAnswer2()
 {
     this->gameCCM->writeToServer("R 2");
+    emit block();
 }
 void GameClient::sendUserAnswer3()
 {
     this->gameCCM->writeToServer("R 3");
+    emit block();
 }
 void GameClient::sendUserAnswer4()
 {
     this->gameCCM->writeToServer("R 4");
+    emit block();
 }

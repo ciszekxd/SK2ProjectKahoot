@@ -21,7 +21,7 @@ Server::~Server(){
 }
 
 void Server::runServer(){
-    if(!serverObj->listen(QHostAddress::LocalHost,12137)){
+    if(!serverObj->listen(QHostAddress::AnyIPv4,12137)){
         std::cout << "server unable to listen" << std::endl;
     }
 }

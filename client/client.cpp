@@ -24,6 +24,7 @@ Client::~Client(){
 // version without auto connection
 Client::Client()
 {
+
     this->score = 0;
     this->socketObj = new QTcpSocket();
 }

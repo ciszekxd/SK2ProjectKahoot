@@ -23,6 +23,9 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
     <property name="currentIndex">
      <number>3</number>
     </property>
@@ -281,12 +284,15 @@ textsize: 30
       </property>
      </widget>
      <widget class="QLabel" name="Winner">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>370</x>
         <y>50</y>
-        <width>1161</width>
-        <height>501</height>
+        <width>791</width>
+        <height>141</height>
        </rect>
       </property>
       <property name="text">

@@ -31,33 +31,25 @@ std::string GameClient::getWinner(){
 
 
 void GameClient::processIncData(){
-    /*std::string tempString;
-    std::string key = gameCCM->readFromServer();
-    std::cout << key << std::endl;*/
 
     std::string tempString = gameCCM->readFromServer();
-
-
-    if(tempString.compare("START") == 0){
+    if(tempString.compare("START\n") == 0){
             emit gameStarts();
             sendClientsName();
+            processIncData();
     }else{
-
         std::string tempMes = tempString.substr(2,tempString.size()-2);
-
         if(tempString.at(0) == 'Q'){
             currQuestion->setQuestion(tempMes);
             for(int j=0; j<4; j++){
                 tempString = gameCCM->readFromServer();
                 tempMes = tempString.substr(2,tempString.size()-2);
-
                 if(tempString.at(0) == 'A'){
                     currQuestion->setAnswer(tempMes);
-
                 }
             }
             emit changeQuestions();
-            emit unblock();
+          //  emit unblock();
         }else if(tempString.at(0) == 'W'){
             winner = tempMes;
             emit endGame();
@@ -85,20 +77,20 @@ void GameClient::sendClientsName()
 void GameClient::sendUserAnswer1()
 {
     this->gameCCM->writeToServer("R 1");
-    emit block();
+    //emit block();
 }
 void GameClient::sendUserAnswer2()
 {
     this->gameCCM->writeToServer("R 2");
-    emit block();
+    //emit block();
 }
 void GameClient::sendUserAnswer3()
 {
     this->gameCCM->writeToServer("R 3");
-    emit block();
+    //emit block();
 }
 void GameClient::sendUserAnswer4()
 {
     this->gameCCM->writeToServer("R 4");
-    emit block();
+    //emit block();
 }

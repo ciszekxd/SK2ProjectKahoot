@@ -72,8 +72,10 @@ void MainWindow::setUpGP()
     connect(ui->Answer3, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer3);
     connect(ui->Answer4, &QPushButton::clicked, gameClientObj, &GameClient::sendUserAnswer4);
 
-    connect(gameClientObj,SIGNAL(block()),gamePageObj, SLOT(disableAnswers()));
-    connect(gameClientObj,SIGNAL(unblock()),gamePageObj,SLOT(enableAnswers()));
+    connect(gameClientObj,SIGNAL(endGame()),gamePageObj,SLOT(showWinner()));
+
+   // connect(gameClientObj,SIGNAL(block()),gamePageObj, SLOT(disableAnswers()));
+    //connect(gameClientObj,SIGNAL(unblock()),gamePageObj,SLOT(enableAnswers()));
 }
 
 void MainWindow::setServerObj(){

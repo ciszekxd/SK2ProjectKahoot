@@ -50,12 +50,12 @@ void GamePage::showWinner(){
     tempUi->Answer3->setVisible(false);
     tempUi->Answer4->setVisible(false);
 
-    QString winner = QString::fromStdString(GCObj->getWinner());
+    QString winner = QString::fromStdString("The winner is " + GCObj->getWinner());
     tempUi->Winner->setText(winner);
 
 }
 
-
+/*
 void GamePage::disableAnswers()
 {
     tempUi->Answer1->setDisabled(true);
@@ -71,3 +71,4 @@ void GamePage::enableAnswers()
     tempUi->Answer3->setEnabled(true);
     tempUi->Answer4->setEnabled(true);
 }
+*/

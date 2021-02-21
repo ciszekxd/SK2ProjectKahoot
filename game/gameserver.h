@@ -14,7 +14,7 @@ public:
     GameServer(Server*, QnAManager*);
     ~GameServer();
     void interpreteMesFromClients();
-    void sendQuestion();
+
     void writeToClients(std::string);
     Server* getServer();
     Client *findClient(QTcpSocket*);
@@ -35,6 +35,7 @@ public slots:
     int getUsersNumber();
     void startGame();
     void nextSecond();
+    void sendQuestion();
 private:
     Server* serverObj;
     QnAManager* QnAMObj;

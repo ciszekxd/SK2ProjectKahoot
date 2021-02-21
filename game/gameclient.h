@@ -17,10 +17,6 @@ public:
     std::string getQuestion();
     std::string getAnswer(int);
     void sendClientsName();
-    void sendUserAnswer1();
-    void sendUserAnswer2();
-    void sendUserAnswer3();
-    void sendUserAnswer4();
 
 
 
@@ -31,12 +27,18 @@ public slots:
     //void sendResponce();
     //void chooseResponce();
 
+    void sendUserAnswer1();
+    void sendUserAnswer2();
+    void sendUserAnswer3();
+    void sendUserAnswer4();
+
+
 signals:
     void endGame();
     void gameStarts();
     void changeQuestions();
-    void block();
-    void unblock();
+    //void block();
+    //void unblock();
 private:
 
     Question* currQuestion;

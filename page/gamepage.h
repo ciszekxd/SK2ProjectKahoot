@@ -13,8 +13,8 @@ public:
 
 public slots:
     void setQuestionsAtPage();
-    void disableAnswers();
-    void enableAnswers();
+    //void disableAnswers();
+   // void enableAnswers();
     void showWinner();
 
 private:

@@ -27,7 +27,7 @@
      <enum>Qt::PreventContextMenu</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -174,7 +174,7 @@ textsize: 30
        </rect>
       </property>
       <property name="text">
-       <string>debug send question</string>
+       <string>next Question</string>
       </property>
      </widget>
      <widget class="QLabel" name="players">
@@ -351,6 +351,29 @@ textsize: 30
       </property>
       <property name="text">
        <string>check again</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="submitIp">
+      <property name="geometry">
+       <rect>
+        <x>1100</x>
+        <y>80</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>set ip</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="ipLine">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>80</y>
+        <width>251</width>
+        <height>22</height>
+       </rect>
       </property>
      </widget>
     </widget>

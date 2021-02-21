@@ -17,7 +17,7 @@ public:
     std::string getQuestion();
     std::string getAnswer(int);
     void sendClientsName();
-
+    void reconnectClient();
 
 
 public slots:

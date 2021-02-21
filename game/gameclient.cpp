@@ -17,6 +17,7 @@ GameClient::GameClient(ClientConnectionManager* CCM)
 
 
 }
+
 GameClient::~GameClient(){
     std::cout << "del currQuestuin" << std::endl;
     delete currQuestion;
@@ -28,6 +29,11 @@ GameClient::~GameClient(){
 std::string GameClient::getWinner(){
     return winner;
 }
+
+void GameClient::reconnectClient(){
+    connect(gameCCM->getClient()->getSocket(), SIGNAL(readyRead()),this,SLOT(processIncData()));
+}
+
 
 
 void GameClient::processIncData(){

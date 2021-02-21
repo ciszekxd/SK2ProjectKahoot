@@ -12,6 +12,11 @@ ClientConnectionManager::~ClientConnectionManager(){
 }
 
 void ClientConnectionManager::setClient(Client* Cli){
+    if(clientObj != NULL) {
+        this->clientObj->getSocket()->disconnect();
+        this->clientObj->getSocket()->disconnectFromHost();
+        this->clientObj->getSocket()->deleteLater();
+    }
     this->clientObj = Cli;
 
 }

@@ -89,7 +89,7 @@ void GameServer::sendQuestion(){
             serverObj->writeToClients(tempStr + tempAns[j].getContent() + "\n");
         }
 
-
+        timerClock = 0;
         currentQuestion++;
     }
 }
@@ -115,7 +115,7 @@ Client *GameServer::findClient(QTcpSocket* sockToLookFor)
 void GameServer::givePoints(Client *certCli)
 {
     int curScore = certCli->getScore();
-    certCli->setScore(curScore + 100);
+    certCli->setScore(curScore + 100*(timeForQuestion-timerClock));
 }
 
 
@@ -140,14 +140,7 @@ void GameServer::readFromClient(){
         if(rcvedAns == rightAns) givePoints(tempCli);
         emit updateCliNaS();
 
-
-
-
-
-
     }
-
-   // std::cout << mytext << std::endl;
 
 }
 

@@ -15,6 +15,7 @@ public:
     ClientConnectionManager* getCCMObj();
 public slots:
     void gameStarts();
+    void setIpFromUi();
 
 
 
@@ -25,6 +26,7 @@ private:
     bool CCpassed;
     bool GCpassed;
     bool GCsetted;
+    QString ip;
 
 };
 

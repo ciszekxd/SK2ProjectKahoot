@@ -54,7 +54,7 @@ void Server::onDisconnect(){
 
 
     QTcpSocket* tempSoc = qobject_cast<QTcpSocket*>(sender());
-    for(int i=0; PlayerList.size(); i++){
+    for(int i=0; i<PlayerList.size(); i++){
         if (PlayerList[i]->getSocket() == tempSoc) PlayerList.removeAt(i);
     }
 

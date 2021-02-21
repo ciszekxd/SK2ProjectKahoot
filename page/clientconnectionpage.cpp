@@ -8,7 +8,7 @@ clientConnectionPage::clientConnectionPage()
     CCpassed = false;
     GCpassed = false;
     GCsetted = false;
-
+    ip = "127.0.0.1";
     emit newGCMade();
 
 
@@ -22,6 +22,17 @@ clientConnectionPage::~clientConnectionPage(){
 
 }
 
+void clientConnectionPage::setIpFromUi(){
+    ip = tempUi->ipLine->text();
+    Client* newClient = new Client("12137",ip, "PlaceguHolderName");
+    this->CCMObj->setClient(newClient);
+    this->GCObj->reconnectClient();
+    connected = true;
+}
+
+
+
+
 void clientConnectionPage::gameStarts(){
     if(this->connected){
         goToGamePage();
@@ -32,7 +43,7 @@ void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
 
     this->tempUi = ui;
 
-    Client* newClient = new Client("12137","127.0.0.1", "PlaceHolderName");
+    Client* newClient = new Client("12137",ip, "PlaceHolderName");
 
     this->CCMObj->setClient(newClient);
     this->GCObj = new GameClient(CCMObj);
@@ -50,6 +61,8 @@ void clientConnectionPage::setUpPage(Ui::MainWindow* ui){
     }
 
     connect(tempUi->checkAgain, &QPushButton::clicked, this, &clientConnectionPage::checkAgain);
+    connect(tempUi->submitIp, &QPushButton::clicked, this, &clientConnectionPage::setIpFromUi);
+
 
     std::cout << "client connection page is runnung" << std::endl;
 }

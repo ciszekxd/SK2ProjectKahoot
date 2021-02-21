@@ -74,8 +74,8 @@ void MainWindow::setUpGP()
 
     connect(gameClientObj,SIGNAL(endGame()),gamePageObj,SLOT(showWinner()));
 
-   // connect(gameClientObj,SIGNAL(block()),gamePageObj, SLOT(disableAnswers()));
-    //connect(gameClientObj,SIGNAL(unblock()),gamePageObj,SLOT(enableAnswers()));
+    connect(gameClientObj,SIGNAL(block()),gamePageObj, SLOT(disableAnswers()));
+    connect(gameClientObj,SIGNAL(unblock()),gamePageObj,SLOT(enableAnswers()));
 }
 
 void MainWindow::setServerObj(){

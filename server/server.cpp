@@ -51,6 +51,13 @@ void Server::onNewConnection(){
 }
 
 void Server::onDisconnect(){
+
+
+    QTcpSocket* tempSoc = qobject_cast<QTcpSocket*>(sender());
+    for(int i=0; PlayerList.size(); i++){
+        if (PlayerList[i]->getSocket() == tempSoc) PlayerList.removeAt(i);
+    }
+
     connectedUsers--;
     std::cout << "user left" << std::endl;
     emit usersNumberChanged();

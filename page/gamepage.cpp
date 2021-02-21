@@ -55,7 +55,7 @@ void GamePage::showWinner(){
 
 }
 
-/*
+
 void GamePage::disableAnswers()
 {
     tempUi->Answer1->setDisabled(true);
@@ -71,4 +71,4 @@ void GamePage::enableAnswers()
     tempUi->Answer3->setEnabled(true);
     tempUi->Answer4->setEnabled(true);
 }
-*/
+

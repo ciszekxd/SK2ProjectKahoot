@@ -37,8 +37,8 @@ signals:
     void endGame();
     void gameStarts();
     void changeQuestions();
-    //void block();
-    //void unblock();
+    void block();
+    void unblock();
 private:
 
     Question* currQuestion;

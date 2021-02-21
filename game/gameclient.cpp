@@ -49,7 +49,7 @@ void GameClient::processIncData(){
                 }
             }
             emit changeQuestions();
-          //  emit unblock();
+            emit unblock();
         }else if(tempString.at(0) == 'W'){
             winner = tempMes;
             emit endGame();
@@ -77,20 +77,20 @@ void GameClient::sendClientsName()
 void GameClient::sendUserAnswer1()
 {
     this->gameCCM->writeToServer("R 1");
-    //emit block();
+    emit block();
 }
 void GameClient::sendUserAnswer2()
 {
     this->gameCCM->writeToServer("R 2");
-    //emit block();
+    emit block();
 }
 void GameClient::sendUserAnswer3()
 {
     this->gameCCM->writeToServer("R 3");
-    //emit block();
+    emit block();
 }
 void GameClient::sendUserAnswer4()
 {
     this->gameCCM->writeToServer("R 4");
-    //emit block();
+    emit block();
 }

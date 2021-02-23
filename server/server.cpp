@@ -31,19 +31,16 @@ void Server::onNewConnection(){
 
     Client* tempPlayer = new Client();
 
-    // a place in code to set connections for all clients
-    //connect(tempPlayer->getSocket(),&QTcpSocket::disconnected, this, &Server::onDisconnect);
 
     //REMEMBER
     //connect on tempPlayer's socket won't work if declared befor setSocket below
     tempPlayer->setSocket(serverObj->nextPendingConnection());
     connect(tempPlayer->getSocket(),&QTcpSocket::disconnected, this, &Server::onDisconnect);
-    //connect(tempPlayer->getSocket(),&QTcpSocket::disconnected,tempPlayer->getSocket(), &QTcpSocket::deleteLater);
+
     this->PlayerList.push_back(tempPlayer);
 
-    //connect(this->PlayerList.last()->getSocket(), SIGNAL(readyRead()), this, SLOT(readFromClient()));
 
-    //connect(this->PlayerList.last()->getSocket(), &QTcpSocket::disconnected, this, &Server::onDisconnect);
+
     std::cout << "new connection" << std::endl;
 
     connectedUsers++;
@@ -55,7 +52,10 @@ void Server::onDisconnect(){
 
     QTcpSocket* tempSoc = qobject_cast<QTcpSocket*>(sender());
     for(int i=0; i<PlayerList.size(); i++){
-        if (PlayerList[i]->getSocket() == tempSoc) PlayerList.removeAt(i);
+        if (PlayerList[i]->getSocket() == tempSoc){
+            disconnect(PlayerList[i], SIGNAL(readyRead()), 0, 0);
+            PlayerList.removeAt(i);
+        }
     }
 
     connectedUsers--;
@@ -65,6 +65,11 @@ void Server::onDisconnect(){
 
 int Server::getUsersNumber(){
     return this->connectedUsers;
+}
+
+QTcpServer* Server::getServer()
+{
+    return this->serverObj;
 }
 
 QList<Client *> Server::getPlayerList()

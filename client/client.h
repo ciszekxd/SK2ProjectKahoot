@@ -23,6 +23,8 @@ public:
     void setScore(int);
     QTcpSocket*  getSocket();
     void setSocket(QTcpSocket*);
+    bool isReadingSet();
+    void ReadingSet();
 
 
 public slots:
@@ -32,6 +34,7 @@ private:
     int score;
     std::string name;
     QTcpSocket* socketObj;
+    bool readSet;
 };
 
 #endif // CLIENT_H

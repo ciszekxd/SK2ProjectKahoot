@@ -33,25 +33,30 @@ bool clientConnectionPage::isNumber(std::string str)
 
 
 void clientConnectionPage::setClientsName(){
+    tempUi->submitName->setDisabled(true);
     Client* tempCli = CCMObj->getClient();
     tempCli->setName(tempUi->nameLine->text().toStdString());
+
+    clientName = QString::fromStdString(tempCli->getName());
+
+    Client* newClient = new Client("12137",ip, clientName);
+    this->CCMObj->setClient(newClient);
+    this->GCObj->reconnectClient();
+
     this->GCObj->sendClientsName();
+
+    connected = true;
 }
 
 void clientConnectionPage::setIpFromUi(){
     ip = tempUi->ipLine->text();
-
-
-
     if(ip.size() == 12 && isNumber(ip.toStdString())){
 
-        QString trueIp = QString::fromStdString(codeToIp(ip.toStdString()));
-
-        Client* newClient = new Client("12137",trueIp, "PlaceguHolderName");
-        this->CCMObj->setClient(newClient);
-        this->GCObj->reconnectClient();
+        tempUi->submitIp->setDisabled(true);
+        ip = QString::fromStdString(codeToIp(ip.toStdString()));
 
         //name setting
+
         tempUi->submitName->setDisabled(false);
         tempUi->submitName->setVisible(true);
 
@@ -61,9 +66,6 @@ void clientConnectionPage::setIpFromUi(){
         tempUi->setName->setVisible(true);
 
         connect(tempUi->submitName,&QPushButton::clicked,this,&clientConnectionPage::setClientsName);
-
-        connected = true;
-
     }else{
         tempUi->badCode->setVisible(true);
     }

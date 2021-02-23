@@ -23,6 +23,7 @@ public:
     //void endGame();
     Client* findWinner();
 
+
 signals:
     void usersNumberChanged();
     void updateCliNaS();
@@ -30,12 +31,14 @@ signals:
     void nextQue();
 
 public slots:
+
     void readFromClient();
     void onUsersNumberChanged();
     int getUsersNumber();
     void startGame();
     void nextSecond();
     void sendQuestion();
+    void setReading();
 private:
     Server* serverObj;
     QnAManager* QnAMObj;

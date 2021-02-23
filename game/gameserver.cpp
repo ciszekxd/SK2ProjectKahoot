@@ -12,8 +12,13 @@ GameServer::GameServer(Server* server, QnAManager* QAM)
     connect(Timer,SIGNAL(timeout()),this,SLOT(nextSecond()));
     timerClock = 0;
     timeForQuestion = 30;
+    connect(serverObj,SIGNAL(usersNumberChanged()),this,SLOT(setReading()));
+
 
 }
+
+
+
 
 GameServer::~GameServer(){
     delete Timer;
@@ -37,6 +42,17 @@ Client *GameServer::findWinner()
     return maxScore;
 }
 
+void GameServer::setReading()
+{
+    QList<Client*> tempQL = getServer()->getPlayerList();
+    for(int i=0; i < tempQL.size(); i++){
+        if(!tempQL[i]->isReadingSet()){
+            connect(tempQL[i]->getSocket(),SIGNAL(readyRead()), this, SLOT(readFromClient()));
+            tempQL[i]->ReadingSet();
+        }
+    }
+}
+
 void GameServer::nextSecond(){
     if(timerClock++ >= timeForQuestion){
         timerClock = 0;
@@ -58,9 +74,9 @@ void GameServer::startGame()
 {
     QList<Client*> tempQL = getServer()->getPlayerList();
 
-    for(int i=0; i<tempQL.size(); i++){
-        connect(tempQL[i]->getSocket(),SIGNAL(readyRead()),this,SLOT(readFromClient()));
-    }
+    //for(int i=0; i<tempQL.size(); i++){
+      //  connect(tempQL[i]->getSocket(),SIGNAL(readyRead()),this,SLOT(readFromClient()));
+    //}
 
     writeToClients("START\n");
     timerClock = 0;

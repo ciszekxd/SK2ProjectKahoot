@@ -32,6 +32,7 @@ private slots:
 
 public:
     int getUsersNumber();
+    QTcpServer* getServer();
     QList<Client *> getPlayerList();
     void runServer();
     void writeToClients(std::string);

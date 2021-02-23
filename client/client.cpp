@@ -11,6 +11,7 @@ Client::Client(QString port, QString ip, QString name)
     std::string convStr = name.toStdString();
     this->name = convStr;
     this->score = 0;
+    readSet = false;
 
 
 }
@@ -24,7 +25,7 @@ Client::~Client(){
 // version without auto connection
 Client::Client()
 {
-
+    readSet = false;
     this->score = 0;
     this->socketObj = new QTcpSocket();
 }
@@ -52,4 +53,14 @@ QTcpSocket*  Client::getSocket(){
 
 void Client::setSocket(QTcpSocket* newSocket){
     this->socketObj = newSocket;
+}
+
+bool Client::isReadingSet()
+{
+    return readSet;
+}
+
+void Client::ReadingSet()
+{
+    readSet = true;
 }

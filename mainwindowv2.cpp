@@ -56,6 +56,7 @@ void MainWindow::setUpGM(){
     connect(gameServerObj, SIGNAL(updateCliNaS()), GMObj, SLOT(showPlayersNames()));
     connect(ui->debugSendQuestion,&QPushButton::clicked,gameServerObj,&GameServer::sendQuestion);
     connect(gameServerObj,SIGNAL(nextSec()),GMObj,SLOT(showTimer()));
+    connect(serverObj,SIGNAL(usersNumberChanged()),GMObj,SLOT(showPlayersNames()));
 }
 
 void MainWindow::setUpGP()

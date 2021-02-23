@@ -15,11 +15,65 @@ void GMPage::showTimer(){
     tempUi->timer->setText(time);
 }
 
+void GMPage::showIP()
+{
+
+    vector<QString> tempVec;
+    QString tempStr;
+
+    const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
+    for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
+        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost){
+            tempStr = address.toString();
+            tempVec.push_back(tempStr);
+        }
+    }
+    //show ip
+    /*
+    tempStr = "Your ip is: " + tempVec[0];
+    tempUi->showIpLebel->setText(tempStr);
+    */
+
+    //show code
+    tempStr = QString::fromStdString(ipToCode(tempVec[0].toStdString()));
+    tempUi->showIpLebel->setText("code to your game is: " + tempStr);
+
+
+}
+
+
+std::string GMPage::ipToCode(std::string x){
+    std::string ip = x;
+    std::string headsubip = "";
+    std::string tailsubip = "";
+    std::string code = "";
+
+    headsubip = ip.substr(0,ip.find("."));
+    tailsubip = ip.substr(ip.find(".")+1,ip.size());
+
+  //  std::cout << code.find(".") << std::endl;
+    for(int i=0; i<4;i++){
+
+
+        int neededZeros = 3-headsubip.size();
+        for(int j = 0; j<neededZeros; j++){
+              headsubip = "0" + headsubip;
+
+        }
+        code += headsubip;
+
+        headsubip = tailsubip.substr(0,tailsubip.find("."));
+        tailsubip = tailsubip.substr(tailsubip.find(".")+1,ip.size());
+
+        }
+    return code;
+}
+
 void GMPage::setUpPage(Ui::MainWindow* ui){
     this->tempUi = ui;
     emit readyForSetUp();
 
-
+    showIP();
     connect(tempUi->startGame,&QPushButton::clicked,this,&GMPage::startGame);
     std::cout << "Game Master Page just set up!" << std::endl;
 }

@@ -15,6 +15,7 @@ public:
 
     void setGameServerObj(GameServer*);
     void setQAMObj();
+    std::string ipToCode(std::string);
 
 
 
@@ -22,6 +23,7 @@ public slots:
     void showUsersNumber();
     void showPlayersNames();
     void showTimer();
+    void showIP();
 
 private:
     GameServer* gameServerObj;

@@ -13,9 +13,14 @@ public:
     GameClient* getGameClient();
     void goToGamePage();
     ClientConnectionManager* getCCMObj();
+    bool isNumber(std::string);
+    std::string codeToIp(std::string);
+
+
 public slots:
     void gameStarts();
     void setIpFromUi();
+    void setClientsName();
 
 
 
@@ -27,6 +32,7 @@ private:
     bool GCpassed;
     bool GCsetted;
     QString ip;
+    QString clientName;
 
 };
 

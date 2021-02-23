@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMainWindow>
 #include <iostream>
+#include <QNetworkInterface>
 #include "client/clientconnectionmanager.h"
 #include "../ui_mainwindow.h"
 #include "../questions/QnAManager.hpp"

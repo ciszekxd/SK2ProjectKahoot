@@ -4,6 +4,7 @@
 #include <QObject>
 #include "../questions/Question.hpp"
 
+
 class GameClient : public QObject
 {
     Q_OBJECT
@@ -18,7 +19,8 @@ public:
     std::string getAnswer(int);
     void sendClientsName();
     void reconnectClient();
-
+    ClientConnectionManager* getCCM();
+    std::string prepareGameHistory();
 
 public slots:
 
@@ -45,6 +47,10 @@ private:
     ClientConnectionManager* gameCCM;
     int rcvdAnswers;
     std::string winner;
+    int queNumber;
+    std::vector<std::string> queContents;
+    std::vector<int> corrAnsVec;
+
 
 };
 

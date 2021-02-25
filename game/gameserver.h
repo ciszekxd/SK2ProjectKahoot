@@ -22,6 +22,9 @@ public:
     int getCurrClock();
     //void endGame();
     Client* findWinner();
+    std::string getQueAndAnsForDisplay();
+    int getNumOfQuestions();
+    std::string preparePlayerHistory(Client*);
 
 
 signals:
@@ -29,6 +32,8 @@ signals:
     void updateCliNaS();
     void nextSec();
     void nextQue();
+    void queJustChanged();
+
 
 public slots:
 

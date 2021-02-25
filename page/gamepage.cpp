@@ -50,10 +50,27 @@ void GamePage::showWinner(){
     tempUi->Answer3->setVisible(false);
     tempUi->Answer4->setVisible(false);
 
+    tempUi->questionField->setVisible(false);
+
     QString winner = QString::fromStdString("The winner is " + GCObj->getWinner());
-    tempUi->Winner->setText(winner);
+    std::string mes = "";
+    std::string tempWinner = GCObj->getWinner();
+    std::string player = GCObj->getCCM()->getClient()->getName() + "\n";
+
+
+    if(tempWinner == player){
+        mes = " \n GG easy \n";
+    }else{
+        mes = "\n maybe next time will be better, keep fighring!!!\n";
+    }
+    tempUi->Winner->setText(winner + QString::fromStdString(mes));
+
+    //std::cout << GCObj->prepareGameHistory() << std::endl;
+    QString tempQstr = QString::fromStdString(GCObj->prepareGameHistory());
+    tempUi->gameHis->setText(tempQstr);
 
 }
+
 
 
 void GamePage::disableAnswers()

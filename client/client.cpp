@@ -12,6 +12,7 @@ Client::Client(QString port, QString ip, QString name)
     this->name = convStr;
     this->score = 0;
     readSet = false;
+    lastAns = "";
 
 
 }
@@ -25,6 +26,7 @@ Client::~Client(){
 // version without auto connection
 Client::Client()
 {
+    lastAns = "";
     readSet = false;
     this->score = 0;
     this->socketObj = new QTcpSocket();
@@ -63,4 +65,21 @@ bool Client::isReadingSet()
 void Client::ReadingSet()
 {
     readSet = true;
+}
+
+void Client::setLastAns(std::string x)
+{
+    lastAns = x;
+    if(x != "") ansHistory.push_back(x);
+
+}
+
+std::string Client::getLastAns()
+{
+    return lastAns;
+}
+
+std::vector<std::string> Client::getAnsHistory()
+{
+    return ansHistory;
 }

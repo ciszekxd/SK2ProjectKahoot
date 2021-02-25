@@ -19,11 +19,13 @@ public:
 
 
 
+
 public slots:
     void showUsersNumber();
     void showPlayersNames();
     void showTimer();
     void showIP();
+    void showCurQue();
 
 private:
     GameServer* gameServerObj;

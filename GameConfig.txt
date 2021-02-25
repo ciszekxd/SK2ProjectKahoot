@@ -9,8 +9,18 @@ Q Jak miał na imie popiez polak
 0 Pawel
 0 Wojtyla
 1 Karol
-Q Gdzie kozy kują
+Q Gdzie kozy kuja
 0 W Poznaniu
 0 W Warszawie
 1 W Pacanowie
 0 W Twojej piwnicy
+Q Ile to jest 2+2
+1 4
+0 10
+0 34
+0 69
+Q ciapy to inaczej
+0 karaoke
+1 kapcie 
+0 kozy
+0 stoly

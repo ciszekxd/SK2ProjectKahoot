@@ -42,6 +42,39 @@ Client *GameServer::findWinner()
     return maxScore;
 }
 
+string GameServer::getQueAndAnsForDisplay()
+{
+    std::string toDisp = "";
+    Question tempQue = QnAMObj->getQuestion(currentQuestion-1);
+    toDisp = "Question: " + tempQue.getQuestion()+"\n";
+    for(int i=0; i<4; i++){
+        toDisp +=  "Answer " + std::to_string(i+1) + ": "
+                + tempQue.getAnswer(i);
+        if(i == tempQue.getRightAnswer()) toDisp += " <= right answer ";
+        toDisp += "\n";
+    }
+
+
+    return toDisp;
+}
+
+int GameServer::getNumOfQuestions()
+{
+    return numOfQuestions;
+}
+
+string GameServer::preparePlayerHistory(Client* player)
+{
+    std::string history = "";
+    std::vector<std::string> tempVec = player->getAnsHistory();
+    for(int i=0; i<numOfQuestions; i++){
+        Question tempQue = QnAMObj->getQuestion(i);
+        history += tempQue.getQuestion() + "\n";
+        history += tempVec[i] + " correct answer: " + tempQue.getAnswer(tempQue.getRightAnswer());
+    }
+    return history;
+}
+
 void GameServer::setReading()
 {
     QList<Client*> tempQL = getServer()->getPlayerList();
@@ -90,11 +123,19 @@ void GameServer::sendQuestion(){
     if(currentQuestion == numOfQuestions){
         disconnect(Timer, SIGNAL(timeout()), 0, 0);
         Client* tempCli = findWinner();
-        serverObj->writeToClients("W " + tempCli->getName() + "\n");
+        if(tempCli != NULL){
+            serverObj->writeToClients("W " + tempCli->getName() + "\n");
+            tempCli->setName(tempCli->getName() + "<= WINNER");
+        }
+        currentQuestion++;
+        emit updateCliNaS();
+    }else if(currentQuestion > numOfQuestions){
+        std::cout << "game ended" << std::endl;
     }else{
+        //setnone in cli history
 
 
-        std::string tempStr = "Q ";
+        std::string tempStr = "Q" + std::to_string(QnAMObj->getQuestion(currentQuestion).getRightAnswer());
 
         //send question
         Question tempQue = QnAMObj->getQuestion(currentQuestion);
@@ -107,6 +148,9 @@ void GameServer::sendQuestion(){
 
         timerClock = 0;
         currentQuestion++;
+        emit queJustChanged();
+        emit updateCliNaS();
+
     }
 }
 
@@ -152,6 +196,9 @@ void GameServer::readFromClient(){
     }else if(myText.at(0) == 'R'){
         int rcvedAns = std::stoi(myTextContent);
         Client* tempCli = findClient(readSocket);
+        //
+        tempCli->setLastAns(QnAMObj->getQuestion(currentQuestion-1).getAnswer(rcvedAns-1));
+        //
         int rightAns = QnAMObj->getQuestion(currentQuestion-1).getRightAnswer()+1;
         if(rcvedAns == rightAns) givePoints(tempCli);
         emit updateCliNaS();

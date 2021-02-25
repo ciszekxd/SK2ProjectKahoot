@@ -99,12 +99,17 @@ void GMPage::showPlayersNames()
     std::string tempString = "";
 
     for(int i=0; i<tempQlist.count();i++){
-        tempString = tempString + tempQlist[i]->getName() + " : ";
-        tempString = tempString + std::to_string(tempQlist[i]->getScore());
-        tempString = tempString + "\n";
+        tempString += tempQlist[i]->getName() + " points: ";
+        tempString += std::to_string(tempQlist[i]->getScore());
+        tempString += " answer: " + tempQlist[i]->getLastAns();
+        tempString += "\n";
     }
 
     QString tempQstr = QString::fromUtf8(tempString.c_str());
 
     tempUi->players->setText(tempQstr);
+}
+
+void GMPage::showCurQue(){
+    tempUi->curQue->setText(QString::fromStdString(gameServerObj->getQueAndAnsForDisplay()));
 }

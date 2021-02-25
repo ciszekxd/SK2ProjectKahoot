@@ -53,7 +53,7 @@ void Server::onDisconnect(){
     QTcpSocket* tempSoc = qobject_cast<QTcpSocket*>(sender());
     for(int i=0; i<PlayerList.size(); i++){
         if (PlayerList[i]->getSocket() == tempSoc){
-            disconnect(PlayerList[i], SIGNAL(readyRead()), 0, 0);
+            disconnect(PlayerList[i]->getSocket(), SIGNAL(readyRead()), 0, 0);
             PlayerList.removeAt(i);
         }
     }
@@ -84,6 +84,8 @@ void Server::writeToClients(std::string text){
 
     QByteArray byteArray(text.c_str(),text.length());
     for(int i=0; i<PlayerList.size(); i++){
+        if(PlayerList[i]->getLastAns() == "") PlayerList[i]->setLastAns("<NONE>");
+        PlayerList[i]->setLastAns("");
         PlayerList[i]->getSocket()->write(byteArray);
     }
     std::cout << "server wrote to clients" << std::endl;

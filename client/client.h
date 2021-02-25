@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QHostAddress>
 #include <QString>
+#include <vector>
 
 
 class Client : public QObject
@@ -25,6 +26,9 @@ public:
     void setSocket(QTcpSocket*);
     bool isReadingSet();
     void ReadingSet();
+    void setLastAns(std::string);
+    std::string getLastAns();
+    std::vector<std::string> getAnsHistory();
 
 
 public slots:
@@ -35,6 +39,9 @@ private:
     std::string name;
     QTcpSocket* socketObj;
     bool readSet;
+    std::string lastAns;
+    std::vector<std::string> ansHistory;
+
 };
 
 #endif // CLIENT_H

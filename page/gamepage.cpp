@@ -61,7 +61,7 @@ void GamePage::showWinner(){
     if(tempWinner == player){
         mes = " \n GG easy \n";
     }else{
-        mes = "\n maybe next time will be better, keep fighring!!!\n";
+        mes = "\n maybe next time will be better, keep fighting!!!\n";
     }
     tempUi->Winner->setText(winner + QString::fromStdString(mes));
 

@@ -71,6 +71,7 @@ std::string GMPage::ipToCode(std::string x){
 
 void GMPage::setUpPage(Ui::MainWindow* ui){
     this->tempUi = ui;
+    tempUi->debugSendQuestion->setDisabled(true);
     emit readyForSetUp();
 
     showIP();
@@ -88,6 +89,7 @@ void GMPage::setGameServerObj(GameServer *newServer){
 }
 
 void GMPage::startGame(){
+    tempUi->debugSendQuestion->setDisabled(false);
     gameServerObj->startGame();
     tempUi->startGame->setDisabled(true);
 }
